@@ -15,4 +15,8 @@
         <attr name="civ_border_overlay" format="boolean" />
         <attr name="civ_fill_color" format="color" />
     </declare-styleable>
+    <declare-styleable name="AddCompanyHeadView">
+        <attr name="head_left_res" format="reference"></attr>
+        <attr name="head_title" format="string"></attr>
+    </declare-styleable>
 </resources>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.lgy.mvcdemo.view.AddCompanyHeadView
+        android:id="@+id/view_base_infor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="38dp"
+        android:background="@drawable/ll_bottom_line_bg"
+        android:gravity="center"
+        android:paddingBottom="17dp"
+        android:paddingTop="11dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="所属区域"
+            android:textColor="@color/base_color"
+            android:textSize="@dimen/default_text_size" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@null"
+            android:hint="请填写所属区域"
+            android:textColorHint="@color/gray"
+            android:textSize="@dimen/default_text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="38dp"
+        android:background="@drawable/ll_bottom_line_bg"
+        android:gravity="center"
+        android:paddingBottom="17dp"
+        android:paddingTop="11dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="楼宇名称"
+            android:textColor="@color/base_color"
+            android:textSize="@dimen/default_text_size" />
+
+        <EditText
+            android:id="@+id/ev_build_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@null"
+            android:hint="请填写楼宇名称"
+            android:textColorHint="@color/gray"
+            android:textSize="@dimen/default_text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="38dp"
+        android:background="@drawable/ll_bottom_line_bg"
+        android:gravity="center"
+        android:paddingBottom="17dp"
+        android:paddingTop="11dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="座号/楼号/商业"
+            android:textColor="@color/base_color"
+            android:textSize="@dimen/default_text_size" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@null"
+            android:hint="请填写内容"
+            android:textColorHint="@color/gray"
+            android:textSize="@dimen/default_text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="38dp"
+        android:background="@drawable/ll_bottom_line_bg"
+        android:gravity="center"
+        android:paddingBottom="17dp"
+        android:paddingTop="11dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="公司名称"
+            android:textColor="@color/base_color"
+            android:textSize="@dimen/default_text_size" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@null"
+            android:hint="请填写公司名称"
+            android:textColorHint="@color/gray"
+            android:textSize="@dimen/default_text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="38dp"
+        android:background="@drawable/ll_bottom_line_bg"
+        android:gravity="center"
+        android:paddingBottom="17dp"
+        android:paddingTop="11dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="所属社区"
+            android:textColor="@color/base_color"
+            android:textSize="@dimen/default_text_size" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@null"
+            android:hint="请填写所属社区"
+            android:textColorHint="@color/gray"
+            android:textSize="@dimen/default_text_size" />
+    </LinearLayout>
+
+    <com.lgy.mvcdemo.view.AddCompanyHeadView
+        android:id="@+id/view_business_license"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:src="@mipmap/ic_scan_license" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="扫描自动录入"
+                android:textColor="@color/select_color"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:paddingRight="14dp"
+                android:text="扫描自动录入"
+                android:textColor="@color/default_background_color"
+                android:textSize="14dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <com.lgy.mvcdemo.view.AddCompanyHeadView
+        android:id="@+id/view_location_infor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+
+    <com.lgy.mvcdemo.view.AddCompanyHeadView
+        android:id="@+id/view_other_license"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+
+    <Button
+        android:id="@+id/btn_confirm"
+        style="@style/btn_confirm"
+        android:text="确定" />
+</LinearLayout>

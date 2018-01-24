@@ -15,4 +15,6 @@
     <color name="comopany_num">#9899A0</color>
     <color name="today_add_compamy_num">#FE5139</color>
     <color name="week_month_add_compamy_num">#4687FF</color>
+    <color name="select_color">#FE7438</color>
+    <color name="circle_color">#FE533B</color>
 </resources>
