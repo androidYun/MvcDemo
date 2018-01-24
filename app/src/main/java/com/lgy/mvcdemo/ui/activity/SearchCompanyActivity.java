@@ -9,6 +9,7 @@ import com.lgy.mvcdemo.R;
  * Created by Administrator on 2018/1/24.
  */
 
+
 public class SearchCompanyActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
