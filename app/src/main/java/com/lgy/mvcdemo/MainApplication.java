@@ -16,6 +16,7 @@
 package com.lgy.mvcdemo;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
@@ -48,25 +49,24 @@ import okhttp3.OkHttpClient;
  * ================================================
  */
 public class MainApplication extends Application {
-
+    public static Context appContext;
     @Override
     public void onCreate() {
         super.onCreate();
-
-//        System.setProperty("http.proxyHost", "192.168.1.104");   //个人测试网络时用的，删掉即可
-//        System.setProperty("http.proxyPort", "8888");
-
+        appContext = MainApplication.this.getApplicationContext();
         initOkGo();
     }
-
+    public static Context getAppContext() {
+        return appContext;
+    }
     private void initOkGo() {
         //---------这里给出的是示例代码,告诉你可以这么传,实际使用的时候,根据需要传,不需要就不传-------------//
         HttpHeaders headers = new HttpHeaders();
-        headers.put("commonHeaderKey1", "commonHeaderValue1");    //header不支持中文，不允许有特殊字符
-        headers.put("commonHeaderKey2", "commonHeaderValue2");
+        headers.put("Content-Type", "application/json");    //header不支持中文，不允许有特殊字符
+//        headers.put("commonHeaderKey2", "commonHeaderValue2");
         HttpParams params = new HttpParams();
-        params.put("commonParamsKey1", "commonParamsValue1");     //param支持中文,直接传,不要自己编码
-        params.put("commonParamsKey2", "这里支持中文参数");
+//        params.put("commonParamsKey1", "commonParamsValue1");     //param支持中文,直接传,不要自己编码
+//        params.put("commonParamsKey2", "这里支持中文参数");
         //----------------------------------------------------------------------------------------//
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();

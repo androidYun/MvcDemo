@@ -1,8 +1,9 @@
-package com.lgy.mvcdemo.net.httpparam;
+package com.lgy.mvcdemo.net.api;
 
+import com.lgy.mvcdemo.net.api.base.BaseHttpParam;
 import com.lgy.mvcdemo.net.model.LegalParam;
-import com.lgy.mvcdemo.net.utils.BaseHttpParam;
 import com.lgy.mvcdemo.utils.StringUtils;
+import com.lzy.okgo.model.HttpMethod;
 
 import java.util.HashMap;
 
@@ -17,22 +18,31 @@ public class LoginHttpParam extends BaseHttpParam {
 
 
     public LoginHttpParam() {
+        super();
+        setHttpMethod(HttpMethod.POST);
+        setCommand(1);
         setNeekToken(false);
         setNeedProgress(true);
     }
 
-    public void setParamMap(String LoginName, String LoginPwd) {
-        paramMap.clear();
+    @Override
+    public HashMap<String, String> getParamMap() {
         paramMap.put("LoginName", LoginName);
         paramMap.put("LoginPwd", LoginPwd);
+        return paramMap;
     }
 
     @Override
-    protected LegalParam isParamLegal() {
-        if(StringUtils.isEmpty(LoginName)){
+    public LegalParam isParamLegal() {
+        if (StringUtils.isEmpty(LoginName)) {
             legalParam.setErrorMsg("账号不能为空");
-            legalParam.setLegal(false);
+            return legalParam;
         }
+        if (StringUtils.isEmpty(LoginPwd)) {
+            legalParam.setErrorMsg("密码不能为空");
+            return legalParam;
+        }
+        legalParam.setLegal(true);
         return legalParam;
     }
 }

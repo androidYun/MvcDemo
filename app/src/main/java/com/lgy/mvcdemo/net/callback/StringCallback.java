@@ -19,7 +19,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.view.Window;
 
-import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.request.base.Request;
 
 /**
@@ -31,21 +30,26 @@ import com.lzy.okgo.request.base.Request;
  * 修订历史：
  * ================================================
  */
-public abstract class StringDialogCallback extends StringCallback {
+public abstract class StringCallback extends com.lzy.okgo.callback.StringCallback {
 
     private ProgressDialog dialog;
 
-    public StringDialogCallback(Activity activity) {
-        dialog = new ProgressDialog(activity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("请求网络中...");
+    private boolean isNeedProgress;
+
+    public StringCallback(Activity activity, boolean isNeedProgress) {
+        this.isNeedProgress = isNeedProgress;
+        if (isNeedProgress && dialog == null) {
+            dialog = new ProgressDialog(activity);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("请求网络中...");
+        }
     }
 
     @Override
     public void onStart(Request<String, ? extends Request> request) {
-        if (dialog != null && !dialog.isShowing()) {
+        if (isNeedProgress && dialog != null && !dialog.isShowing()) {
             dialog.show();
         }
     }

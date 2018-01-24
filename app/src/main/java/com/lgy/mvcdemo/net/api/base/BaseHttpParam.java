@@ -1,6 +1,8 @@
-package com.lgy.mvcdemo.net.utils;
+package com.lgy.mvcdemo.net.api.base;
 
 import com.lgy.mvcdemo.net.model.LegalParam;
+import com.lgy.mvcdemo.net.model.req.BaseReq;
+import com.lgy.mvcdemo.utils.sp.UserSpUtils;
 import com.lzy.okgo.model.HttpMethod;
 
 import java.util.HashMap;
@@ -13,6 +15,8 @@ public abstract class BaseHttpParam {
 
     protected HashMap<String, String> paramMap;
 
+    public BaseReq baseReq;
+
     private boolean isNeekToken;
 
     private boolean isNeedProgress;
@@ -23,9 +27,17 @@ public abstract class BaseHttpParam {
 
     protected LegalParam legalParam;
 
+    private int command;//接口编号
+
+    private int userId;//接口Id
+
+
     public BaseHttpParam() {
+        userId = UserSpUtils.getUserId();
         paramMap = new HashMap<>();
-        legalParam=new LegalParam();
+        paramMap.put("userId", 0 + "");
+        legalParam = new LegalParam();
+        legalParam.setLegal(false);
     }
 
     public boolean isNeekToken() {
@@ -60,5 +72,16 @@ public abstract class BaseHttpParam {
         isNeedProgress = needProgress;
     }
 
-    abstract protected LegalParam isParamLegal();//是否参数合法
+    public int getCommand() {
+        return command;
+    }
+
+    public void setCommand(int command) {
+        paramMap.put("command", command + "");
+        this.command = command;
+    }
+
+    public abstract LegalParam isParamLegal();//是否参数合法
+
+    public abstract HashMap<String, String> getParamMap();//是否参数合法
 }

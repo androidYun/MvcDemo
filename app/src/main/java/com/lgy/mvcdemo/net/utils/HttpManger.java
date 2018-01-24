@@ -3,11 +3,14 @@ package com.lgy.mvcdemo.net.utils;
 import android.app.Activity;
 
 import com.lgy.mvcdemo.listener.HttpListener;
+import com.lgy.mvcdemo.net.api.base.BaseHttpParam;
 import com.lgy.mvcdemo.net.callback.JsonCallback;
+import com.lgy.mvcdemo.net.callback.StringCallback;
+import com.lgy.mvcdemo.net.model.BaseResp;
+import com.lgy.mvcdemo.utils.JsonUtils;
+import com.lgy.mvcdemo.utils.StringUtils;
 import com.lzy.okgo.OkGo;
-import com.lzy.okgo.model.HttpMethod;
 import com.lzy.okgo.model.Response;
-import com.lzy.okgo.request.GetRequest;
 
 import org.json.JSONObject;
 
@@ -19,43 +22,51 @@ public class HttpManger {
     private HttpListener httpListener;
 
     private Activity mActivity;
+    String API_SERVER_URL = "http://w.kjjl100.com/handle/getdata.ashx";
 
     public HttpManger(HttpListener httpListener, Activity mActivity) {
         this.httpListener = httpListener;
         this.mActivity = mActivity;
     }
 
-    public void doHttp(BaseHttpParam baseHttpParam) {
-        GetRequest<JSONObject> getRequest = null;
-        if (baseHttpParam.getHttpMethod() == HttpMethod.GET) {
-            getRequest = OkGo.<JSONObject>get("").tag(baseHttpParam.getTag());
+    public void doPostHttp(final BaseHttpParam baseHttpParam) {
+        if (!baseHttpParam.isParamLegal().isLegal()) {
+            httpListener.onFail(0, baseHttpParam.isParamLegal().getErrorMsg());
+            return;
         }
-        getRequest.execute(new JsonCallback<JSONObject>(mActivity,baseHttpParam.isNeedProgress()) {
+        JSONObject jsonObject = new JSONObject(baseHttpParam.getParamMap());
+        OkGo.<String>post(API_SERVER_URL).upJson(jsonObject.toString()).tag(baseHttpParam.getTag()).execute(new StringCallback(mActivity, baseHttpParam.isNeedProgress()) {
             @Override
-            public void onSuccess(Response<JSONObject> response) {
-                //成功
-                httpListener.onSuccess(0, response.body().toString());
+            public void onSuccess(Response<String> response) {
+                String result = response.body();
+                if (StringUtils.isEmpty(result)) {
+                    httpListener.onFail(baseHttpParam.getCommand(), "请求数据失败");
+                } else {
+                    BaseResp baseResp = JsonUtils.fromJson(result, BaseResp.class);
+                    if (baseResp.getResult() == 1) {//成功
+                        httpListener.onSuccess(baseResp.getCommand(), baseResp.getData());
+                    } else {
+                        httpListener.onFail(baseResp.getCommand(), baseResp.getErrorMsg());
+                    }
+                }
             }
 
             @Override
-            public void onError(Response<JSONObject> response) {
+            public void onError(Response<String> response) {
                 super.onError(response);
-                httpListener.onFail(0, response.message());
-            }
-
-            @Override
-            public void onFinish() {
-                super.onFinish();
+                int code = response.code();
+                httpListener.onFail(baseHttpParam.getCommand(), "请求失败");
             }
         });
+
     }
 
     public void doGetHttp(BaseHttpParam baseHttpParam) {
-        if(baseHttpParam.isParamLegal().isLegal()){
-            httpListener.onFail(0,baseHttpParam.isParamLegal().getErrorMsg());
+        if (!baseHttpParam.isParamLegal().isLegal()) {
+            httpListener.onFail(0, baseHttpParam.isParamLegal().getErrorMsg());
             return;
         }
-        OkGo.<JSONObject>get("").params(baseHttpParam.paramMap).tag(baseHttpParam.getTag()).execute(new JsonCallback<JSONObject>(mActivity,baseHttpParam.isNeedProgress()) {
+        OkGo.<JSONObject>get(API_SERVER_URL).params(baseHttpParam.getParamMap()).tag(baseHttpParam.getTag()).execute(new JsonCallback<JSONObject>(mActivity, baseHttpParam.isNeedProgress()) {
 
             @Override
             public void onSuccess(Response<JSONObject> response) {

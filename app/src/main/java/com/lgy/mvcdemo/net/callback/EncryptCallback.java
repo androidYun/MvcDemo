@@ -15,6 +15,8 @@
  */
 package com.lgy.mvcdemo.net.callback;
 
+import android.app.Activity;
+
 import com.lgy.mvcdemo.utils.MD5Utils;
 import com.lzy.okgo.model.HttpParams;
 import com.lzy.okgo.model.Response;
@@ -40,6 +42,10 @@ public abstract class EncryptCallback<T> extends JsonCallback<T> {
 
     private static final Random RANDOM = new Random();
     private static final String CHARS = "0123456789abcdefghijklmnopqrstuvwxyz";
+
+    public EncryptCallback(Activity activity, boolean isNeedProgress) {
+        super(activity, isNeedProgress);
+    }
 
     @Override
     public void onStart(Request<T, ? extends Request> request) {

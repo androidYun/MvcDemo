@@ -17,16 +17,13 @@ package com.lgy.mvcdemo.net.callback;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.view.Window;
 
 import com.lzy.okgo.callback.AbsCallback;
+import com.lzy.okgo.model.Response;
 import com.lzy.okgo.request.base.Request;
 
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-
-import okhttp3.Response;
 
 /**
  * ================================================
@@ -52,7 +49,7 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
     public JsonCallback(Activity activity, boolean isNeedProgress) {
         this.activity = activity;
         this.isNeedProgress = isNeedProgress;
-        if(isNeedProgress&&dialog!=null){
+        if (isNeedProgress && dialog != null) {
             dialog = new ProgressDialog(activity);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setCanceledOnTouchOutside(false);
@@ -72,49 +69,53 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
     @Override
     public void onStart(Request<T, ? extends Request> request) {
         super.onStart(request);
-        // 主要用于在所有请求之前添加公共的请求头或请求参数
-        // 例如登录授权的 token
-        // 使用的设备信息
-        // 可以随意添加,也可以什么都不传
-        // 还可以在这里对所有的参数进行加密，均在这里实现
-        request.params("command", "0")//固定请求参数
-                .params("userId", "1");
-        if (isNeedProgress&&dialog != null && dialog.isShowing()) {
+        if (isNeedProgress && dialog != null && dialog.isShowing()) {
             dialog.show();
         }
     }
 
-    /**
-     * 该方法是子线程处理，不能做ui相关的工作
-     * 主要作用是解析网络返回的 response 对象,生产onSuccess回调中需要的数据对象
-     * 这里的解析工作不同的业务逻辑基本都不一样,所以需要自己实现,以下给出的时模板代码,实际使用根据需要修改
-     */
     @Override
-    public T convertResponse(Response response) throws Throwable {
+    public void onSuccess(Response<T> response) {
 
-        // 重要的事情说三遍，不同的业务，这里的代码逻辑都不一样，如果你不修改，那么基本不可用
-        // 重要的事情说三遍，不同的业务，这里的代码逻辑都不一样，如果你不修改，那么基本不可用
-        // 重要的事情说三遍，不同的业务，这里的代码逻辑都不一样，如果你不修改，那么基本不可用
-
-        //详细自定义的原理和文档，看这里： https://github.com/jeasonlzy/okhttp-OkGo/wiki/JsonCallback
-
-        if (type == null) {
-            if (clazz == null) {
-                Type genType = getClass().getGenericSuperclass();
-                type = ((ParameterizedType) genType).getActualTypeArguments()[0];
-            } else {
-                JsonConvert<T> convert = new JsonConvert<>(clazz);
-                return convert.convertResponse(response);
-            }
-        }
-
-        JsonConvert<T> convert = new JsonConvert<>(type);
-        return convert.convertResponse(response);
     }
 
     @Override
+    public T convertResponse(okhttp3.Response response) throws Throwable {
+        return null;
+    }
+//    /**
+//     * 该方法是子线程处理，不能做ui相关的工作
+//     * 主要作用是解析网络返回的 response 对象,生产onSuccess回调中需要的数据对象
+//     * 这里的解析工作不同的业务逻辑基本都不一样,所以需要自己实现,以下给出的时模板代码,实际使用根据需要修改
+//     */
+//    @Override
+//    public T convertResponse(Response response) throws Throwable {//  返回json:【{"command":1,"result":1,"errorMsg":"","userId":"1"}】 180,6ms
+//     //   {"command":1,"result":0,"errorMsg":"手机帐号或者密码不正确","userId":"0"}
+//        // {"command":1,"result":1,"errorMsg":"","userId":"1"}
+//        LogUtil.d("中药数据" + response.message()+"      "+response.body().string() +"        内容"+ response.body());
+//        // 重要的事情说三遍，不同的业务，这里的代码逻辑都不一样，如果你不修改，那么基本不可用
+//        // 重要的事情说三遍，不同的业务，这里的代码逻辑都不一样，如果你不修改，那么基本不可用
+//        // 重要的事情说三遍，不同的业务，这里的代码逻辑都不一样，如果你不修改，那么基本不可用
+//
+//        //详细自定义的原理和文档，看这里： https://github.com/jeasonlzy/okhttp-OkGo/wiki/JsonCallback
+//
+//        if (type == null) {
+//            if (clazz == null) {
+//                Type genType = getClass().getGenericSuperclass();
+//                type = ((ParameterizedType) genType).getActualTypeArguments()[0];
+//            } else {
+//                JsonConvert<T> convert = new JsonConvert<>(clazz);
+//                return convert.convertResponse(response);
+//            }
+//        }
+//
+//        JsonConvert<T> convert = new JsonConvert<>(type);
+//        return convert.convertResponse(response);
+//    }
+
+    @Override
     public void onFinish() {
-        if (isNeedProgress&&dialog != null && dialog.isShowing()) {
+        if (isNeedProgress && dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }
     }

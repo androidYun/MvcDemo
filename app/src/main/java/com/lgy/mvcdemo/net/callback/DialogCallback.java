@@ -42,8 +42,8 @@ public abstract class DialogCallback<T> extends JsonCallback<T> {
         dialog.setMessage("请求网络中...");
     }
 
-    public DialogCallback(Activity activity) {
-        super();
+    public DialogCallback(Activity activity, boolean isNeedProgress) {
+        super(activity, isNeedProgress);
         initDialog(activity);
     }
 
