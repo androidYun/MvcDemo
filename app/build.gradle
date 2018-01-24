@@ -41,4 +41,5 @@ dependencies {
     /*Gson*/
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.zhy:autolayout:1.4.5'
+    compile 'com.jakewharton:butterknife:8.7.0'
 }

@@ -1,18 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.lgy.mvcdemo.ui.activity.MainActivity">
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.lgy.mvcdemo.view.NaviTitleView
+        android:id="@+id/navi_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.lgy.mvcdemo.view.NaviTitleView>
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:background="@color/default_background_color">
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <View
+            android:id="@+id/view_top"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/default_background_color"></View>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/view_top"
+            android:background="@color/white"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_company_data"
+                android:paddingTop="20dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="今日新增企业"
+                    android:textColor="@color/comopany_num"
+                    android:textSize="11dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="今日新增企业"
+                    android:textColor="@color/comopany_num"
+                    android:textSize="11dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="今日新增企业"
+                    android:textColor="@color/comopany_num"
+                    android:textSize="11dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/today_add_compamy_num"
+                    android:textSize="11dp"
+                    tools:text="15" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/week_month_add_compamy_num"
+                    android:textSize="11dp"
+                    tools:text="105" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/week_month_add_compamy_num"
+                    android:textSize="11dp"
+                    tools:text="320" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"></LinearLayout>
+    </LinearLayout>
+</LinearLayout>

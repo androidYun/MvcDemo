@@ -9,6 +9,10 @@
     <color name="editext_text_color">#e3e3e3</color>
     <color name="confirm_color">#4687FF</color>
     <color name="white">#FFFFFF</color>
-    <color name="main_head_bg">#4687FF</color>
+    <color name="default_background_color">#4687FF</color>
     <color name="backgroundColor">#f4f4f4</color>
+    <color name="base_color">#333333</color>
+    <color name="comopany_num">#9899A0</color>
+    <color name="today_add_compamy_num">#FE5139</color>
+    <color name="week_month_add_compamy_num">#4687FF</color>
 </resources>
