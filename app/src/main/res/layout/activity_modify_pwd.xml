@@ -26,6 +26,7 @@
             android:textSize="16dp" />
 
         <EditText
+            android:id="@+id/ev_old_pwd"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
@@ -48,6 +49,7 @@
             android:textSize="16dp" />
 
         <EditText
+            android:id="@+id/ev_new_pwd"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"
@@ -70,6 +72,7 @@
             android:textSize="16dp" />
 
         <EditText
+            android:id="@+id/ev_again_new_pwd"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="5"

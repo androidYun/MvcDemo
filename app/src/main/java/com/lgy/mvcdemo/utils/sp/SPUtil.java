@@ -218,22 +218,21 @@ public class SPUtil {
         }
     }
 
-    public static void putBean(Context context, String key,
+    public static void putBean(String key,
                                Object obj) {
-        SharedPreferences.Editor editor = getSPFile(context).edit();
+        SharedPreferences.Editor editor = getSPFile(MainApplication.getAppContext()).edit();
         String objString = FastJsonUtil.toJSONString(obj, true);// fastjson的方法，需要导包的
         editor.putString(key, objString).apply();
     }
 
     /**
-     * @param context
      * @param key
      * @param clazz   这里传入一个类就是我们所需要的实体类(obj)
      * @return 返回我们封装好的该实体类(obj)
      */
-    public static <T> T getBean(Context context, String key,
+    public static <T> T getBean( String key,
                                 Class<T> clazz) {
-        String objString = getSPFile(context).getString(key, "");
+        String objString = getSPFile(MainApplication.getAppContext()).getString(key, "");
         return FastJsonUtil.getObject(objString, clazz);
     }
 }

@@ -29,6 +29,7 @@ public class LoginActivity extends BaseActivity {
     Button btnConfirm;
 
     LoginHttpParam loginHttpParam;
+
     @Override
     public int getContentViewId() {
         return R.layout.activity_login;
@@ -60,6 +61,7 @@ public class LoginActivity extends BaseActivity {
         if (command == loginHttpParam.getCommand()) {
             LoginResp loginResp = FastJsonUtil.getObject(result, LoginResp.class);
             UserSpUtils.setUserId(loginResp.getUserId());
+            UserSpUtils.setUserBean(loginResp);
             UserSpUtils.setUserName(evAccount.getText().toString().trim());
             UserSpUtils.setUserPassword(evPwd.getText().toString().trim());
             startActivity(new Intent(this, MainActivity.class));

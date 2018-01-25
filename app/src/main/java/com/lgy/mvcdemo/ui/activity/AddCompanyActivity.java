@@ -1,6 +1,5 @@
 package com.lgy.mvcdemo.ui.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,7 +8,9 @@ import android.widget.TextView;
 
 import com.lgy.mvcdemo.R;
 import com.lgy.mvcdemo.bean.CompanyDataBean;
+import com.lgy.mvcdemo.listener.BuildHeadListener;
 import com.lgy.mvcdemo.listener.SelectContentListener;
+import com.lgy.mvcdemo.net.api.AddCompanyHttpParam;
 import com.lgy.mvcdemo.view.AddCompanyHeadView;
 import com.lgy.mvcdemo.view.pop.SelectContentPop;
 
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -39,8 +39,6 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
 
     @BindView(R.id.btn_confirm)
     Button btnConfirm;
-    @BindView(R.id.tv_company_name)
-    TextView tvCompanyName;
     @BindView(R.id.tv_industry)
     TextView tvIndustry;
     @BindView(R.id.tv_company_type)
@@ -69,6 +67,54 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     AddCompanyHeadView viewOtherLicense;
     @BindView(R.id.ll_qita_infor)
     LinearLayout llQitaInfor;
+    @BindView(R.id.ev_company_name)
+    EditText evCompanyName;
+    @BindView(R.id.ev_contact_phone)
+    EditText evContactPhone;
+    @BindView(R.id.ev_contact_person)
+    EditText evContactPerson;
+    @BindView(R.id.tv_company_tax)
+    EditText tvCompanyTax;
+    @BindView(R.id.ev_legal_phone)
+    EditText evLegalPhone;
+    @BindView(R.id.ev_jingjixingzhi)
+    EditText evJingjixingzhi;
+    @BindView(R.id.ev_qiyefaren)
+    EditText evQiyefaren;
+    @BindView(R.id.ev_qiyefuzeren)
+    EditText evQiyefuzeren;
+    @BindView(R.id.ev_reg_address)
+    EditText evRegAddress;
+    @BindView(R.id.ev_shangshileixing)
+    EditText evShangshileixing;
+    @BindView(R.id.ev_company_license)
+    EditText evCompanyLicense;
+    @BindView(R.id.ev_zhuceZiben)
+    EditText evZhuceZiben;
+    @BindView(R.id.ev_buildname)
+    EditText evBuildname;
+    @BindView(R.id.ev_companyArea)
+    EditText evCompanyArea;
+    @BindView(R.id.ev_company_no)
+    EditText evCompanyNo;
+    @BindView(R.id.ev_floorNo)
+    EditText evFloorNo;
+    @BindView(R.id.ev_roomNo)
+    EditText evRoomNo;
+    @BindView(R.id.ev_jieDao)
+    EditText evJieDao;
+    @BindView(R.id.ev_chanquandanwei)
+    EditText evChanquandanwei;
+    @BindView(R.id.ev_congyerenyuan)
+    EditText evCongyerenyuan;
+    @BindView(R.id.ev_nasuijigou)
+    EditText evNasuijigou;
+    @BindView(R.id.ev_ruzhutime)
+    EditText evRuzhutime;
+    @BindView(R.id.ev_zhujin)
+    TextView evZhujin;
+    @BindView(R.id.ev_community)
+    EditText evCommunity;
     private SelectContentPop industryContentPop;//行业数据
 
     private SelectContentPop buildNoContentPop;//楼宇编号数据
@@ -94,6 +140,8 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
 
     private List<CompanyDataBean> listedTypeList = new ArrayList<>();//上市类型
 
+    private AddCompanyHttpParam addCompanyHttpParam;
+
     @Override
     public int getContentViewId() {
         return R.layout.activity_add_company;
@@ -102,7 +150,7 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     @Override
     protected void initView() {
         super.initView();
-
+        addCompanyHttpParam = new AddCompanyHttpParam();
 
     }
 
@@ -162,10 +210,10 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     }
 
 
-    @OnClick({R.id.view_base_infor, R.id.tv_company_name, R.id.tv_industry, R.id.tv_company_type, R.id.tv_listed_type, R.id.view_business_license, R.id.view_location_infor, R.id.view_other_license, R.id.tv_product_type, R.id.tv_isempty, R.id.btn_confirm})
+    @OnClick({R.id.tv_company_no, R.id.tv_industry, R.id.tv_company_type, R.id.tv_listed_type, R.id.tv_product_type, R.id.tv_isempty, R.id.btn_confirm})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.tv_company_name:
+            case R.id.tv_company_no:
                 industryContentPop.showPopupWindow();
                 break;
             case R.id.tv_industry:
@@ -183,55 +231,97 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
             case R.id.tv_isempty:
                 isEmptyContentPop.showPopupWindow();
                 break;
-
-            case R.id.view_base_infor:
-                boolean expand = viewBaseInfor.getExpand();
-                if (!expand) {
-                    llBaseInfor.setVisibility(View.VISIBLE);
-                } else {
-                    llBaseInfor.setVisibility(View.GONE);
-                }
-                break;
-            case R.id.view_business_license:
-                break;
-            case R.id.view_location_infor:
-                break;
-            case R.id.view_other_license:
-                break;
             case R.id.btn_confirm:
                 break;
         }
     }
 
+    @Override
+    public void bindEventListener() {
+        super.bindEventListener();
+        viewBaseInfor.setBuildHeadListener(new BuildHeadListener() {
+            @Override
+            public void buildClickListener(boolean isClcik) {
+                setVisibleAndGo(llBaseInfor, isClcik);
+            }
+        });
+        viewBusinessLicense.setBuildHeadListener(new BuildHeadListener() {
+            @Override
+            public void buildClickListener(boolean isClcik) {
+                setVisibleAndGo(llLicense, isClcik);
+            }
+        });
+        viewLocationInfor.setBuildHeadListener(new BuildHeadListener() {
+            @Override
+            public void buildClickListener(boolean isClcik) {
+                setVisibleAndGo(llLication, isClcik);
+            }
+        });
+        viewOtherLicense.setBuildHeadListener(new BuildHeadListener() {
+            @Override
+            public void buildClickListener(boolean isClcik) {
+                setVisibleAndGo(llQitaInfor, isClcik);
+            }
+        });
+
+    }
 
     @Override
     public void onSelectSuccess(int code, CompanyDataBean companyDataBean) {
         switch (code) {
             case INDUSTRY_CODE:
                 tvIndustry.setText(companyDataBean.getName());
+                addCompanyHttpParam.industry = companyDataBean.getValue();
                 break;
             case BUILDNO_CODE:
-                tvCompanyName.setText(companyDataBean.getName());
+                tvCompanyNo.setText(companyDataBean.getName());
+                addCompanyHttpParam.buildNo = companyDataBean.getValue();
                 break;
             case ISEMPTY_CODE:
                 tvIsempty.setText(companyDataBean.getName());
+                addCompanyHttpParam.emptyAccount = companyDataBean.getValue();
                 break;
             case PRODUCT_CODE:
                 tvProductType.setText(companyDataBean.getName());
+                addCompanyHttpParam.productType = companyDataBean.getValue();
                 break;
             case COMPANYTYPE_CODE:
                 tvCompanyType.setText(companyDataBean.getName());
+                addCompanyHttpParam.companyType = companyDataBean.getValue();
                 break;
             case LISTEDTYPE_CODE:
                 tvListedType.setText(companyDataBean.getName());
+                addCompanyHttpParam.listedType = companyDataBean.getValue();
                 break;
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    public void setVisibleAndGo(View view, boolean isVisiable) {
+        if (!isVisiable) {
+            view.setVisibility(View.VISIBLE);
+        } else {
+            view.setVisibility(View.GONE);
+        }
+    }
+
+    public void setPostParam() {
+        addCompanyHttpParam.buildNo = evBuildname.getText().toString();
+        addCompanyHttpParam.community = evCommunity.getText().toString();
+        addCompanyHttpParam.companyArea = evCompanyArea.getText().toString();
+        addCompanyHttpParam.companyLicense = evCompanyLicense.getText().toString();
+        addCompanyHttpParam.companyName = evCompanyName.getText().toString();
+        //addCompanyHttpParam.companyTax=evCom
+        addCompanyHttpParam.contactPerson = evContactPerson.getText().toString();
+        addCompanyHttpParam.contactPhone = evContactPhone.getText().toString();
+        addCompanyHttpParam.economicType = evJingjixingzhi.getText().toString();
+       // addCompanyHttpParam.employNum = evContactPerson.getText().toString();
+        addCompanyHttpParam.floorNo = evFloorNo.getText().toString();
+        addCompanyHttpParam.legalPhone = evLegalPhone.getText().toString();
+        addCompanyHttpParam.legalPerson = evQiyefaren.getText().toString();
+     //   addCompanyHttpParam. = evContactPerson.getText().toString();
+        addCompanyHttpParam.contactPerson = evContactPerson.getText().toString();
+        addCompanyHttpParam.contactPerson = evContactPerson.getText().toString();
+
+
     }
 }

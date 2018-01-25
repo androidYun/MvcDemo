@@ -17,9 +17,6 @@ public class BaseResp {//{"command":1,"result":1,"errorMsg":"","userId":"1"}
 
     private String errorMsg;
 
-    private String userId;
-
-    private String data;
 
     public int getCommand() {
         return command;
@@ -45,19 +42,4 @@ public class BaseResp {//{"command":1,"result":1,"errorMsg":"","userId":"1"}
         this.errorMsg = errorMsg;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
 }

@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lgy.mvcdemo.R;
+import com.lgy.mvcdemo.listener.BuildHeadListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +37,8 @@ public class AddCompanyHeadView extends RelativeLayout {
 
     private View inflateView;//加载的布局
 
+    private BuildHeadListener buildHeadListener;
+
     public AddCompanyHeadView(Context context) {
         super(context);
         this.mContext = context;
@@ -48,7 +51,7 @@ public class AddCompanyHeadView extends RelativeLayout {
         super(context, attrs);
         this.mContext = context;
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AddCompanyHeadView);
-        leftResId = typedArray.getResourceId(R.styleable.AddCompanyHeadView_head_left_res,0);
+        leftResId = typedArray.getResourceId(R.styleable.AddCompanyHeadView_head_left_res, 0);
         title = typedArray.getString(R.styleable.AddCompanyHeadView_head_title);
         typedArray.recycle();
         initView(context);
@@ -70,6 +73,7 @@ public class AddCompanyHeadView extends RelativeLayout {
 
     @OnClick(R.id.rl_modify_head)
     public void onViewClicked() {
+        buildHeadListener.buildClickListener(ivExpand.isSelected());
         if (ivExpand.isSelected()) {
             ivExpand.setSelected(false);
             ivModifyHead.setSelected(false);
@@ -86,5 +90,10 @@ public class AddCompanyHeadView extends RelativeLayout {
      */
     public boolean getExpand() {
         return ivExpand.isSelected();
+    }
+
+
+    public void setBuildHeadListener(BuildHeadListener buildHeadListener) {
+        this.buildHeadListener = buildHeadListener;
     }
 }

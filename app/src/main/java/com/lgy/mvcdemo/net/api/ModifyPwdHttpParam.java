@@ -16,6 +16,8 @@ public class ModifyPwdHttpParam extends BaseHttpParam {
 
     public String newPass;
 
+    public String againNewPass;
+
 
     public ModifyPwdHttpParam() {
         super();
@@ -39,7 +41,15 @@ public class ModifyPwdHttpParam extends BaseHttpParam {
             return legalParam;
         }
         if (StringUtils.isEmpty(newPass)) {
-            legalParam.setErrorMsg("密码不能为空");
+            legalParam.setErrorMsg("新密码不能为空");
+            return legalParam;
+        }
+        if (StringUtils.isEmpty(againNewPass)) {
+            legalParam.setErrorMsg("新密码不能为空");
+            return legalParam;
+        }
+        if (!newPass.equals(againNewPass)) {
+            legalParam.setErrorMsg("两次密码不一致,请重新输入");
             return legalParam;
         }
         legalParam.setLegal(true);

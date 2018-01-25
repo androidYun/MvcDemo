@@ -2,6 +2,7 @@ package com.lgy.mvcdemo.net.api;
 
 import com.lgy.mvcdemo.net.api.base.BaseHttpParam;
 import com.lgy.mvcdemo.net.model.LegalParam;
+import com.lgy.mvcdemo.utils.StringUtils;
 import com.lzy.okgo.model.HttpMethod;
 
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class AddCompanyHttpParam extends BaseHttpParam {
 
     public String regAddress;//注册地址
 
-    public String economicType;//注册资本
+    public String economicType;//经济性质
 
     public String legalPerson;//法人
 
@@ -47,7 +48,7 @@ public class AddCompanyHttpParam extends BaseHttpParam {
 
 
 
-    public String legalPhone;//负责人电话
+    public String legalPhone;//负责人电话  法人电话
 
     public String taxAgency;//纳税机构
 
@@ -58,7 +59,6 @@ public class AddCompanyHttpParam extends BaseHttpParam {
     public String inTime;//入驻时间
 
     public String roomMaster;//房屋产权单位
-
 
     public String floorNo;//所在楼层
 
@@ -121,10 +121,10 @@ public class AddCompanyHttpParam extends BaseHttpParam {
 
     @Override
     public LegalParam isParamLegal() {
-//        if (StringUtils.isEmpty(userName)) {
-//            legalParam.setErrorMsg("账号不能为空");
-//            return legalParam;
-//        }
+        if (StringUtils.isEmpty(buildName)) {
+            legalParam.setErrorMsg("楼宇名称不能为空");
+            return legalParam;
+        }
 //        if (StringUtils.isEmpty(passWord)) {
 //            legalParam.setErrorMsg("密码不能为空");
 //            return legalParam;

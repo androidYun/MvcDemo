@@ -51,6 +51,7 @@ public class WelcomeActivity extends BaseActivity {
         if (command == loginHttpParam.getCommand()) {
             LoginResp loginResp = FastJsonUtil.getObject(result, LoginResp.class);
             UserSpUtils.setUserId(loginResp.getUserId());
+            UserSpUtils.setUserBean(loginResp);
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <com.lgy.mvcdemo.view.NaviTitleView
@@ -10,6 +12,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:center_title="通知公告"></com.lgy.mvcdemo.view.NaviTitleView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="@drawable/ll_search"
+        android:gravity="center"
+        android:padding="12dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/ic_search" />
+
+        <EditText
+            android:id="@+id/ev_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:background="@null"
+            android:hint="搜索"
+            android:lines="1" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundColor"
+        android:padding="13dp"
+        android:textColor="@color/base_color"
+        android:textSize="12dp"
+        android:visibility="gone"
+        tools:text="找到搜索内容共4个" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_notice"

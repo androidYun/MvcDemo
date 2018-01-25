@@ -1,5 +1,7 @@
 package com.lgy.mvcdemo.utils.sp;
 
+import com.lgy.mvcdemo.net.model.resp.LoginResp;
+
 /**
  * Created by ${lgy} on 2018/1/2409:15
  * 邮箱1343168198@qq.com
@@ -13,6 +15,8 @@ public class UserSpUtils {
     private final static String USER_NAME = "userName";//用户Id
 
     private final static String USER_PASSWORD = "userPassword";//用户Id
+
+    private final static String USER_BEAN = "USER_BEAN";//用户实体类
 
 
     public static String getUserId() {
@@ -38,5 +42,13 @@ public class UserSpUtils {
 
     public static void setUserPassword(String userPassword) {
         SPUtil.put(USER_PASSWORD, userPassword);
+    }
+
+    public static void setUserBean(LoginResp userBean) {
+        SPUtil.putBean(USER_BEAN, userBean);
+    }
+
+    public static LoginResp getUserBean() {
+        return SPUtil.getBean(USER_BEAN, LoginResp.class);
     }
 }

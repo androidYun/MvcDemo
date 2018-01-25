@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.lgy.mvcdemo.R;
+import com.lgy.mvcdemo.net.model.resp.LoginResp;
+import com.lgy.mvcdemo.utils.sp.UserSpUtils;
 import com.lgy.mvcdemo.view.CircleImageView;
 import com.lgy.mvcdemo.view.NaviTitleView;
 
@@ -49,6 +51,10 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initData() {
         super.initData();
+        LoginResp userBean = UserSpUtils.getUserBean();
+        tvDayAddCompany.setText(userBean.getDayNum() + "");
+        tvWeekAddCompany.setText(userBean.getWeekNum() + "");
+        tvMonthAddCompany.setText(userBean.getMonthNum() + "");
     }
 
 
@@ -64,10 +70,12 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(this, AddCompanyActivity.class));
                 break;
             case R.id.tv_search_company:
+                startActivity(new Intent(this, SearchCompanyActivity.class));
                 break;
             case R.id.tv_build_infor:
                 break;
             case R.id.tv_set:
+                startActivity(new Intent(this, SetActivity.class));
                 break;
         }
     }

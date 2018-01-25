@@ -36,8 +36,11 @@ public abstract class StringCallback extends com.lzy.okgo.callback.StringCallbac
 
     private boolean isNeedProgress;
 
+    private Activity mActivity;
+
     public StringCallback(Activity activity, boolean isNeedProgress) {
         this.isNeedProgress = isNeedProgress;
+        this.mActivity = activity;
         if (isNeedProgress && dialog == null) {
             dialog = new ProgressDialog(activity);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -56,7 +59,7 @@ public abstract class StringCallback extends com.lzy.okgo.callback.StringCallbac
 
     @Override
     public void onFinish() {
-        if (dialog != null && dialog.isShowing()) {
+        if (dialog != null && dialog.isShowing() && !mActivity.isFinishing()) {
             dialog.dismiss();
         }
     }
