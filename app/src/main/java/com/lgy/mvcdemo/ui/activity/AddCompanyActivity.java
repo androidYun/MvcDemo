@@ -183,6 +183,7 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
             case R.id.tv_isempty:
                 isEmptyContentPop.showPopupWindow();
                 break;
+
             case R.id.view_base_infor:
                 boolean expand = viewBaseInfor.getExpand();
                 if (!expand) {
