@@ -14,7 +14,7 @@ public class MessageHttpParam extends BaseHttpParam {
 
     public MessageHttpParam() {
         super();
-        setHttpMethod(HttpMethod.GET);
+        setHttpMethod(HttpMethod.POST);
         setCommand(2);
         setNeekToken(false);
         setNeedProgress(true);

@@ -7,7 +7,7 @@ import com.lgy.mvcdemo.net.api.base.BaseHttpParam;
 import com.lgy.mvcdemo.net.callback.JsonCallback;
 import com.lgy.mvcdemo.net.callback.StringCallback;
 import com.lgy.mvcdemo.net.model.BaseResp;
-import com.lgy.mvcdemo.utils.JsonUtils;
+import com.lgy.mvcdemo.utils.FastJsonUtil;
 import com.lgy.mvcdemo.utils.StringUtils;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
@@ -42,9 +42,9 @@ public class HttpManger {
                 if (StringUtils.isEmpty(result)) {
                     httpListener.onFail(baseHttpParam.getCommand(), "请求数据失败");
                 } else {
-                    BaseResp baseResp = JsonUtils.fromJson(result, BaseResp.class);
+                    BaseResp baseResp = FastJsonUtil.getObject(result, BaseResp.class);
                     if (baseResp.getResult() == 1) {//成功
-                        httpListener.onSuccess(baseResp.getCommand(), baseResp.getData());
+                        httpListener.onSuccess(baseResp.getCommand(), result);
                     } else {
                         httpListener.onFail(baseResp.getCommand(), baseResp.getErrorMsg());
                     }

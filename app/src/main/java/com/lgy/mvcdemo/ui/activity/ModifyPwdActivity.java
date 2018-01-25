@@ -15,4 +15,9 @@ public class ModifyPwdActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_pwd);
     }
+
+    @Override
+    public int getContentViewId() {
+        return 0;
+    }
 }

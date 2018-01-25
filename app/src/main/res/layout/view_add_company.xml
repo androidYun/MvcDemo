@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:layout_marginTop="2dp"
-    android:background="@color/white"
+    android:background="@color/build_head_color"
     android:gravity="center_vertical"
     android:paddingLeft="14dp"
     android:paddingRight="14dp">
@@ -28,9 +28,10 @@
         tools:text="基本信息" />
 
     <ImageView
+        android:id="@+id/iv_expand"
         android:layout_width="18dp"
         android:layout_height="20dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        tools:src="@mipmap/ic_next" />
+        android:src="@drawable/select_expant" />
 </RelativeLayout>

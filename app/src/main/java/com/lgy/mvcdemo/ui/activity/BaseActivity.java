@@ -8,17 +8,37 @@ import com.lgy.mvcdemo.net.utils.HttpManger;
 import com.lgy.mvcdemo.utils.ToastUtil;
 import com.zhy.autolayout.AutoLayoutActivity;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by Administrator on 2018/1/19.
  */
 
-public class BaseActivity extends AutoLayoutActivity implements HttpListener {
+public abstract class BaseActivity extends AutoLayoutActivity implements HttpListener {
     protected HttpManger httpManger;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         httpManger = new HttpManger(this, this);
+        int viewId = getContentViewId();
+        setContentView(viewId);
+        ButterKnife.bind(this);
+        initView();
+        initData();
+        bindEventListener();
+    }
+
+    public abstract int getContentViewId();
+
+    protected void initView() {
+
+    }
+
+    public void initData() {
+    }
+
+    public void bindEventListener() {
     }
 
     @Override

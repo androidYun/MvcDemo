@@ -16,4 +16,9 @@ public class SearchCompanyActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice_board);
     }
+
+    @Override
+    public int getContentViewId() {
+        return 0;
+    }
 }

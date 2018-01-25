@@ -1,205 +1,476 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
-
-    <com.lgy.mvcdemo.view.AddCompanyHeadView
-        android:id="@+id/view_base_infor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="38dp"
-        android:background="@drawable/ll_bottom_line_bg"
-        android:gravity="center"
-        android:paddingBottom="17dp"
-        android:paddingTop="11dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="所属区域"
-            android:textColor="@color/base_color"
-            android:textSize="@dimen/default_text_size" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@null"
-            android:hint="请填写所属区域"
-            android:textColorHint="@color/gray"
-            android:textSize="@dimen/default_text_size" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="38dp"
-        android:background="@drawable/ll_bottom_line_bg"
-        android:gravity="center"
-        android:paddingBottom="17dp"
-        android:paddingTop="11dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="楼宇名称"
-            android:textColor="@color/base_color"
-            android:textSize="@dimen/default_text_size" />
-
-        <EditText
-            android:id="@+id/ev_build_name"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@null"
-            android:hint="请填写楼宇名称"
-            android:textColorHint="@color/gray"
-            android:textSize="@dimen/default_text_size" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="38dp"
-        android:background="@drawable/ll_bottom_line_bg"
-        android:gravity="center"
-        android:paddingBottom="17dp"
-        android:paddingTop="11dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="座号/楼号/商业"
-            android:textColor="@color/base_color"
-            android:textSize="@dimen/default_text_size" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@null"
-            android:hint="请填写内容"
-            android:textColorHint="@color/gray"
-            android:textSize="@dimen/default_text_size" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="38dp"
-        android:background="@drawable/ll_bottom_line_bg"
-        android:gravity="center"
-        android:paddingBottom="17dp"
-        android:paddingTop="11dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="公司名称"
-            android:textColor="@color/base_color"
-            android:textSize="@dimen/default_text_size" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@null"
-            android:hint="请填写公司名称"
-            android:textColorHint="@color/gray"
-            android:textSize="@dimen/default_text_size" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="38dp"
-        android:background="@drawable/ll_bottom_line_bg"
-        android:gravity="center"
-        android:paddingBottom="17dp"
-        android:paddingTop="11dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="所属社区"
-            android:textColor="@color/base_color"
-            android:textSize="@dimen/default_text_size" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@null"
-            android:hint="请填写所属社区"
-            android:textColorHint="@color/gray"
-            android:textSize="@dimen/default_text_size" />
-    </LinearLayout>
-
-    <com.lgy.mvcdemo.view.AddCompanyHeadView
-        android:id="@+id/view_business_license"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.lgy.mvcdemo.view.AddCompanyHeadView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="63dp"
-            android:layout_height="63dp"
-            android:src="@mipmap/ic_scan_license" />
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
+        <com.lgy.mvcdemo.view.AddCompanyHeadView
+            android:id="@+id/view_base_infor"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp">
+            app:head_left_res="@drawable/select_base_infor"
+            app:head_title="基本信息"></com.lgy.mvcdemo.view.AddCompanyHeadView>
 
-            <TextView
+        <LinearLayout
+            android:id="@+id/ll_base_infor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="座号/楼号/商业区" />
+
+                <TextView
+                    android:id="@+id/tv_company_name"
+                    android:layout_width="64dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/shape_select_build"
+                    android:drawableRight="@mipmap/sj"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:text="座号"
+                    android:textSize="12dp" />
+
+                <EditText
+                    android:id="@+id/tv_company_no"
+                    style="@style/build_infor_content"
+                    android:hint="请填写座号" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="公司名称" />
+
+                    <EditText
+                        style="@style/build_infor_content"
+                        android:hint="请填写公司名称" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="联系方式" />
+
+                    <EditText
+                        style="@style/build_infor_content"
+                        android:hint="请填写联系方式" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="联系人" />
+
+                    <EditText
+                        style="@style/build_infor_content"
+                        android:hint="请填写联系人" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="税务代码" />
+
+                    <EditText
+                        style="@style/build_infor_content"
+                        android:hint="请填写税务代码" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="登记证" />
+
+                    <EditText
+                        style="@style/build_infor_content"
+                        android:hint="请填写登记证" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="法人电话" />
+
+                    <EditText
+                        style="@style/build_infor_content"
+                        android:hint="请填写法人电话" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="行业" />
+
+                    <TextView
+                        android:id="@+id/tv_industry"
+                        style="@style/build_infor_content"
+                        android:hint="请选择行业" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="经济性质" />
+
+                    <EditText
+                        style="@style/build_infor_content"
+                        android:hint="请填写经济性质" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="企业法人" />
+
+                    <EditText
+                        style="@style/build_infor_content"
+                        android:hint="请填写企业法人" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="企业负责人" />
+
+                    <EditText
+                        style="@style/build_infor_content"
+                        android:hint="请填写公司名称" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="企业类型" />
+
+                    <EditText
+                        android:id="@+id/tv_company_type"
+                        style="@style/build_infor_content"
+                        android:hint="请选择企业类型" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="注册地址" />
+
+                    <EditText
+                        style="@style/build_infor_content"
+                        android:hint="请填写注册地址" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="商业类型" />
+
+                    <EditText
+                        style="@style/build_infor_content"
+                        android:hint="请填写商业类型" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="营业执照" />
+
+                    <EditText
+                        style="@style/build_infor_content"
+                        android:hint="请填写营业执照" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="公司名称" />
+
+                    <EditText
+                        style="@style/build_infor_content"
+                        android:hint="请填写公司名称" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="公司名称" />
+
+                    <EditText
+                        style="@style/build_infor_content"
+                        android:hint="请填写公司名称" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="上市类型" />
+
+                <TextView
+                    android:id="@+id/tv_listed_type"
+                    style="@style/build_infor_content"
+                    android:hint="请选择上市类型" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="公司名称" />
+
+                <EditText
+                    style="@style/build_infor_content"
+                    android:hint="请填写公司名称" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="所属社区" />
+
+                <EditText
+                    style="@style/build_infor_content"
+                    android:hint="请填写所属社区" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.lgy.mvcdemo.view.AddCompanyHeadView
+            android:id="@+id/view_business_license"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:head_left_res="@drawable/select_licenses"
+            app:head_title="营业执照信息"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+
+        <LinearLayout
+            android:id="@+id/ll_license"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="63dp"
+                android:layout_height="63dp"
+                android:src="@mipmap/ic_scan_license" />
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="扫描自动录入"
-                android:textColor="@color/select_color"
-                android:textSize="14dp" />
+                android:layout_marginTop="15dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:paddingRight="14dp"
-                android:text="扫描自动录入"
-                android:textColor="@color/default_background_color"
-                android:textSize="14dp" />
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:text="扫描自动录入"
+                    android:textColor="@color/select_color"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="14dp"
+                    android:text="扫描自动录入"
+                    android:textColor="@color/default_background_color"
+                    android:textSize="14dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <com.lgy.mvcdemo.view.AddCompanyHeadView
+            android:id="@+id/view_location_infor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:head_left_res="@drawable/select_location"
+            app:head_title="位置信息"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+
+        <LinearLayout
+            android:id="@+id/ll_lication"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="楼宇名称" />
+
+                <EditText
+                    style="@style/build_infor_content"
+                    android:hint="请填写楼宇名称" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="公司面积" />
+
+                <EditText
+                    style="@style/build_infor_content"
+                    android:hint="请填写公司面积" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="楼层" />
+
+                <EditText
+                    style="@style/build_infor_content"
+                    android:hint="请填写楼层" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="房间号" />
+
+                <EditText
+                    style="@style/build_infor_content"
+                    android:hint="房间号" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.lgy.mvcdemo.view.AddCompanyHeadView
+            android:id="@+id/view_other_license"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:head_left_res="@drawable/select_qita_infor"
+            app:head_title="其他信息"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+
+        <LinearLayout
+            android:id="@+id/ll_qita_infor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="产权单位" />
+
+                <EditText
+                    style="@style/build_infor_content"
+                    android:hint="请填写产权单位" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="产业类型" />
+
+                <TextView
+                    android:id="@+id/tv_product_type"
+                    style="@style/build_infor_content"
+                    android:hint="请选择产业类型" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="从业人员" />
+
+                <EditText
+                    style="@style/build_infor_content"
+                    android:hint="请填写从业人员" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="是否是空挂户" />
+
+                <TextView
+                    android:id="@+id/tv_isempty"
+                    style="@style/build_infor_content"
+                    android:hint="请选择是否是空挂户" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="纳税机构" />
+
+                <EditText
+                    style="@style/build_infor_content"
+                    android:hint="请填写纳税机构" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="入驻时间" />
+
+                <EditText
+                    style="@style/build_infor_content"
+                    android:hint="请填写入驻时间" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="月租金" />
+
+                <EditText
+                    style="@style/build_infor_content"
+                    android:hint="请填写月租金" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_confirm"
+            style="@style/btn_confirm"
+            android:text="确定" />
     </LinearLayout>
-
-    <com.lgy.mvcdemo.view.AddCompanyHeadView
-        android:id="@+id/view_location_infor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.lgy.mvcdemo.view.AddCompanyHeadView>
-
-    <com.lgy.mvcdemo.view.AddCompanyHeadView
-        android:id="@+id/view_other_license"
-        android:layout_width="match_parent"
-
-        android:layout_height="wrap_content"></com.lgy.mvcdemo.view.AddCompanyHeadView>
-
-    <Button
-        android:id="@+id/btn_confirm"
-        style="@style/btn_confirm"
-        android:text="确定" />
-</LinearLayout>
+</ScrollView>

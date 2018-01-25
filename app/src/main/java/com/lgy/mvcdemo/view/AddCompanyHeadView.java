@@ -13,6 +13,7 @@ import com.lgy.mvcdemo.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/1/24.
@@ -25,6 +26,8 @@ public class AddCompanyHeadView extends RelativeLayout {
     RelativeLayout rlModifyHead;
     @BindView(R.id.tv_title)
     TextView tvTitle;
+    @BindView(R.id.iv_expand)
+    ImageView ivExpand;
     private Context mContext;
 
     private int leftResId;
@@ -44,8 +47,8 @@ public class AddCompanyHeadView extends RelativeLayout {
     public AddCompanyHeadView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mContext = context;
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.NaviTitleView);
-        leftResId = typedArray.getResourceId(R.styleable.AddCompanyHeadView_head_left_res, R.mipmap.btn_back);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AddCompanyHeadView);
+        leftResId = typedArray.getResourceId(R.styleable.AddCompanyHeadView_head_left_res,0);
         title = typedArray.getString(R.styleable.AddCompanyHeadView_head_title);
         typedArray.recycle();
         initView(context);
@@ -59,7 +62,29 @@ public class AddCompanyHeadView extends RelativeLayout {
     }
 
     private void inflateView() {
-        ivModifyHead.setImageResource(leftResId);
+        if (leftResId != 0) {
+            ivModifyHead.setImageResource(leftResId);
+        }
         tvTitle.setText(title);
+    }
+
+    @OnClick(R.id.rl_modify_head)
+    public void onViewClicked() {
+        if (ivExpand.isSelected()) {
+            ivExpand.setSelected(false);
+            ivModifyHead.setSelected(false);
+        } else {
+            ivExpand.setSelected(true);
+            ivModifyHead.setSelected(true);
+        }
+    }
+
+    /**
+     * 获取项目是否是展开状态
+     *
+     * @return
+     */
+    public boolean getExpand() {
+        return ivExpand.isSelected();
     }
 }

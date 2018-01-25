@@ -15,4 +15,9 @@ public class PolicyRuleActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poilcy_rule);
     }
+
+    @Override
+    public int getContentViewId() {
+        return 0;
+    }
 }

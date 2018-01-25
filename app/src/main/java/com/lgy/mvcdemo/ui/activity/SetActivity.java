@@ -15,4 +15,9 @@ public class SetActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set);
     }
+
+    @Override
+    public int getContentViewId() {
+        return 0;
+    }
 }

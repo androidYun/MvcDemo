@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.lgy.mvcdemo.MainApplication;
-import com.lgy.mvcdemo.utils.JsonUtils;
+import com.lgy.mvcdemo.utils.FastJsonUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -18,10 +18,11 @@ public class SPUtil {
     public static final String FILE_NAME = "dph_share_data";
 
 
-    public static SharedPreferences getSPFile(Context context){
+    public static SharedPreferences getSPFile(Context context) {
         return context.getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
     }
+
     /**
      * 保存数据的方法，我们需要拿到保存数据的具体类型，然后根据类型调用不同的保存方法
      *
@@ -35,23 +36,24 @@ public class SPUtil {
         SharedPreferences.Editor editor = sp.edit();
 
         if (object instanceof String) {
-            editor.putString(key,  object==null?"":(String)object);
+            editor.putString(key, object == null ? "" : (String) object);
         } else if (object instanceof Integer) {
-            editor.putInt(key, object==null?0:(Integer) object);
+            editor.putInt(key, object == null ? 0 : (Integer) object);
         } else if (object instanceof Boolean) {
-            editor.putBoolean(key, object==null?false:(Boolean) object);
+            editor.putBoolean(key, object == null ? false : (Boolean) object);
         } else if (object instanceof Float) {
-            editor.putFloat(key, object==null?0:(Float) object);
+            editor.putFloat(key, object == null ? 0 : (Float) object);
         } else if (object instanceof Long) {
-            editor.putLong(key, object==null?0:(Long) object);
+            editor.putLong(key, object == null ? 0 : (Long) object);
         } else {
-            editor.putString(key, object==null?"":object.toString());
+            editor.putString(key, object == null ? "" : object.toString());
         }
 
         SharedPreferencesCompat.apply(editor);
     }
+
     public static void put(String key, Object object) {
-        put(MainApplication.getAppContext(),key,object);
+        put(MainApplication.getAppContext(), key, object);
     }
 
 
@@ -80,27 +82,35 @@ public class SPUtil {
 
         return null;
     }
+
     public static Object get(String key, Object defaultObject) {
-        return get(MainApplication.getAppContext(),key,defaultObject);
+        return get(MainApplication.getAppContext(), key, defaultObject);
     }
+
     public static String getString(String key, String defaultObject) {
-        return (String) get(key,defaultObject);
+        return (String) get(key, defaultObject);
     }
+
     public static boolean getBoolean(String key, boolean defaultObject) {
-        return (boolean) get(key,defaultObject);
+        return (boolean) get(key, defaultObject);
     }
+
     public static int getInt(String key, int defaultObject) {
-        return (int) get(key,defaultObject);
+        return (int) get(key, defaultObject);
     }
+
     public static float getFloat(String key, float defaultObject) {
-        return (float) get(key,defaultObject);
+        return (float) get(key, defaultObject);
     }
+
     public static long getLong(String key, long defaultObject) {
-        return (long) get(key,defaultObject);
+        return (long) get(key, defaultObject);
     }
+
     public static double getDouble(String key, double defaultObject) {
-        return (double) get(key,defaultObject);
+        return (double) get(key, defaultObject);
     }
+
     /**
      * 移除某个key值已经对应的值
      *
@@ -108,28 +118,32 @@ public class SPUtil {
      * @param key
      */
     public static void remove(Context context, String key) {
-        SharedPreferences sp =getSPFile(context);
+        SharedPreferences sp = getSPFile(context);
         SharedPreferences.Editor editor = sp.edit();
         editor.remove(key);
         SharedPreferencesCompat.apply(editor);
     }
+
     public static void remove(String key) {
-        remove(MainApplication.getAppContext(),key);
+        remove(MainApplication.getAppContext(), key);
     }
+
     /**
      * 清除所有数据
      *
      * @param context
      */
     public static void clear(Context context) {
-        SharedPreferences sp =getSPFile(context);
+        SharedPreferences sp = getSPFile(context);
         SharedPreferences.Editor editor = sp.edit();
         editor.clear();
         SharedPreferencesCompat.apply(editor);
     }
+
     public static void clear() {
         clear(MainApplication.getAppContext());
     }
+
     /**
      * 查询某个key是否已经存在
      *
@@ -141,8 +155,9 @@ public class SPUtil {
         SharedPreferences sp = getSPFile(context);
         return sp.contains(key);
     }
+
     public static boolean contains(String key) {
-        return contains(MainApplication.getAppContext(),key);
+        return contains(MainApplication.getAppContext(), key);
     }
 
     /**
@@ -152,12 +167,14 @@ public class SPUtil {
      * @return
      */
     public static Map<String, ?> getAll(Context context) {
-        SharedPreferences sp =getSPFile(context);
+        SharedPreferences sp = getSPFile(context);
         return sp.getAll();
     }
+
     public static Map<String, ?> getAll() {
         return getAll(MainApplication.getAppContext());
     }
+
     /**
      * 创建一个解决SharedPreferencesCompat.apply方法的一个兼容类
      *
@@ -200,24 +217,23 @@ public class SPUtil {
             editor.commit();
         }
     }
+
     public static void putBean(Context context, String key,
-                                          Object obj) {
+                               Object obj) {
         SharedPreferences.Editor editor = getSPFile(context).edit();
-        String objString = JsonUtils.toJson(obj);// fastjson的方法，需要导包的
+        String objString = FastJsonUtil.toJSONString(obj, true);// fastjson的方法，需要导包的
         editor.putString(key, objString).apply();
     }
 
     /**
-     *
      * @param context
      * @param key
-     * @param clazz
-     *            这里传入一个类就是我们所需要的实体类(obj)
+     * @param clazz   这里传入一个类就是我们所需要的实体类(obj)
      * @return 返回我们封装好的该实体类(obj)
      */
     public static <T> T getBean(Context context, String key,
-                                          Class<T> clazz) {
+                                Class<T> clazz) {
         String objString = getSPFile(context).getString(key, "");
-        return JsonUtils.fromJson(objString, clazz);
+        return FastJsonUtil.getObject(objString, clazz);
     }
 }

@@ -29,7 +29,7 @@ public abstract class BaseHttpParam {
 
     private int command;//接口编号
 
-    private int userId;//接口Id
+    private String  userId;//接口Id
 
 
     public BaseHttpParam() {

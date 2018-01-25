@@ -1,5 +1,6 @@
 package com.lgy.mvcdemo.net.model;
 
+
 /**
  * Created by ${lgy} on 2018/1/2410:36
  * 邮箱1343168198@qq.com
@@ -8,6 +9,7 @@ package com.lgy.mvcdemo.net.model;
  */
 
 public class BaseResp {//{"command":1,"result":1,"errorMsg":"","userId":"1"}
+
 
     private int command;
 

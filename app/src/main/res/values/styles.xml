@@ -19,7 +19,7 @@
     <!--下面确定按钮样式-->
     <style name="btn_confirm">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">39dp</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:layout_marginLeft">@dimen/margin_border</item>
         <item name="android:layout_marginTop">30dp</item>
         <item name="android:layout_marginRight">@dimen/margin_border</item>
@@ -34,5 +34,34 @@
     <style name="naviview_tablayout">
         <item name="android:textSize">15dp</item>
         <item name="android:textColor">@color/default_background_color</item>
+    </style>
+    <!--楼宇信息副布局-->
+    <style name="build_infor_ll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:background">@drawable/ll_bottom_line_bg</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">17dp</item>
+        <item name="android:paddingTop">11dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginLeft">38dp</item>
+    </style>
+    <!--楼宇标题-->
+    <style name="build_infor_title">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/base_color</item>
+        <item name="android:textSize">@dimen/default_text_size</item>
+    </style>
+
+    <!--楼宇内容-->
+    <style name="build_infor_content">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textSize">@dimen/default_text_size</item>
     </style>
 </resources>
