@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 /**
  * Created by Administrator on 2018/1/23.
+ * 查询楼宇信息（command=6）
  */
 
 public class SearchBuildHttpParam extends BaseHttpParam {

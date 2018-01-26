@@ -65,6 +65,7 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(this, NoticeBoardActivity.class));
                 break;
             case R.id.tv_rule:
+                startActivity(new Intent(this, PolicyRuleActivity.class));
                 break;
             case R.id.tv_add_company:
                 startActivity(new Intent(this, AddCompanyActivity.class));

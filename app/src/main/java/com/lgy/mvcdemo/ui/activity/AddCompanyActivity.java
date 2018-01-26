@@ -6,15 +6,20 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.TimePickerView;
+import com.bigkoo.pickerview.listener.CustomListener;
 import com.lgy.mvcdemo.R;
 import com.lgy.mvcdemo.bean.CompanyDataBean;
 import com.lgy.mvcdemo.listener.BuildHeadListener;
 import com.lgy.mvcdemo.listener.SelectContentListener;
 import com.lgy.mvcdemo.net.api.AddCompanyHttpParam;
+import com.lgy.mvcdemo.utils.TimeUtils;
 import com.lgy.mvcdemo.view.AddCompanyHeadView;
 import com.lgy.mvcdemo.view.pop.SelectContentPop;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -47,12 +52,10 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     TextView tvListedType;
     @BindView(R.id.tv_product_type)
     TextView tvProductType;
-    @BindView(R.id.tv_isempty)
-    TextView tvIsempty;
     @BindView(R.id.view_base_infor)
     AddCompanyHeadView viewBaseInfor;
     @BindView(R.id.tv_company_no)
-    EditText tvCompanyNo;
+    TextView tvCompanyNo;
     @BindView(R.id.ll_base_infor)
     LinearLayout llBaseInfor;
     @BindView(R.id.view_business_license)
@@ -73,24 +76,13 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     EditText evContactPhone;
     @BindView(R.id.ev_contact_person)
     EditText evContactPerson;
-    @BindView(R.id.tv_company_tax)
-    EditText tvCompanyTax;
+    @BindView(R.id.ev_company_tax)
+    EditText evCompanyTax;
     @BindView(R.id.ev_legal_phone)
     EditText evLegalPhone;
-    @BindView(R.id.ev_jingjixingzhi)
-    EditText evJingjixingzhi;
-    @BindView(R.id.ev_qiyefaren)
-    EditText evQiyefaren;
-    @BindView(R.id.ev_qiyefuzeren)
-    EditText evQiyefuzeren;
-    @BindView(R.id.ev_reg_address)
-    EditText evRegAddress;
-    @BindView(R.id.ev_shangshileixing)
-    EditText evShangshileixing;
     @BindView(R.id.ev_company_license)
     EditText evCompanyLicense;
-    @BindView(R.id.ev_zhuceZiben)
-    EditText evZhuceZiben;
+
     @BindView(R.id.ev_buildname)
     EditText evBuildname;
     @BindView(R.id.ev_companyArea)
@@ -101,20 +93,40 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     EditText evFloorNo;
     @BindView(R.id.ev_roomNo)
     EditText evRoomNo;
-    @BindView(R.id.ev_jieDao)
-    EditText evJieDao;
-    @BindView(R.id.ev_chanquandanwei)
-    EditText evChanquandanwei;
-    @BindView(R.id.ev_congyerenyuan)
-    EditText evCongyerenyuan;
-    @BindView(R.id.ev_nasuijigou)
-    EditText evNasuijigou;
-    @BindView(R.id.ev_ruzhutime)
-    EditText evRuzhutime;
-    @BindView(R.id.ev_zhujin)
-    TextView evZhujin;
     @BindView(R.id.ev_community)
     EditText evCommunity;
+    @BindView(R.id.ev_companyCredit)
+    EditText evCompanyCredit;
+    @BindView(R.id.ev_economicType)
+    EditText evEconomicType;
+    @BindView(R.id.ev_legalPerson)
+    EditText evLegalPerson;
+    @BindView(R.id.ev_headPerson)
+    EditText evHeadPerson;
+    @BindView(R.id.ev_regAddress)
+    EditText evRegAddress;
+    @BindView(R.id.ev_regMoney)
+    EditText evRegMoney;
+    @BindView(R.id.ev_sliceName)
+    EditText evSliceName;
+    @BindView(R.id.ev_roomMaster)
+    EditText evRoomMaster;
+    @BindView(R.id.ev_employNum)
+    EditText evEmployNum;
+    @BindView(R.id.tv_emptyAccount)
+    TextView tvEmptyAccount;
+    @BindView(R.id.ev_taxAgency)
+    EditText evTaxAgency;
+    @BindView(R.id.tv_inTime)
+    TextView tvInTime;
+    @BindView(R.id.ev_monthRent)
+    EditText evMonthRent;
+    @BindView(R.id.tv_seatNo)
+    TextView tvSeatNo;
+    @BindView(R.id.tv_buildNo)
+    TextView tvBuildNo;
+    @BindView(R.id.tv_businessNo)
+    TextView tvBusinessNo;
     private SelectContentPop industryContentPop;//行业数据
 
     private SelectContentPop buildNoContentPop;//楼宇编号数据
@@ -141,6 +153,7 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     private List<CompanyDataBean> listedTypeList = new ArrayList<>();//上市类型
 
     private AddCompanyHttpParam addCompanyHttpParam;
+    private TimePickerView pvCustomTime;
 
     @Override
     public int getContentViewId() {
@@ -151,7 +164,7 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     protected void initView() {
         super.initView();
         addCompanyHttpParam = new AddCompanyHttpParam();
-
+        initCustomTimePicker();
     }
 
     @Override
@@ -204,13 +217,7 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
         listedTypeContentPop = new SelectContentPop(this, LISTEDTYPE_CODE, listedTypeList, this);
     }
 
-    @OnClick(R.id.btn_confirm)
-    public void onViewClicked() {
-
-    }
-
-
-    @OnClick({R.id.tv_company_no, R.id.tv_industry, R.id.tv_company_type, R.id.tv_listed_type, R.id.tv_product_type, R.id.tv_isempty, R.id.btn_confirm})
+    @OnClick({R.id.tv_company_no, R.id.tv_industry, R.id.tv_company_type, R.id.tv_listed_type, R.id.tv_product_type, R.id.tv_emptyAccount, R.id.btn_confirm, R.id.tv_inTime, R.id.tv_seatNo, R.id.tv_buildNo, R.id.tv_businessNo})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_company_no:
@@ -228,10 +235,14 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
             case R.id.tv_product_type:
                 productContentPop.showPopupWindow();
                 break;
-            case R.id.tv_isempty:
+            case R.id.tv_emptyAccount:
                 isEmptyContentPop.showPopupWindow();
                 break;
             case R.id.btn_confirm:
+                setPostParam();
+                break;
+            case R.id.tv_inTime:
+                pvCustomTime.show();
                 break;
         }
     }
@@ -278,7 +289,7 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
                 addCompanyHttpParam.buildNo = companyDataBean.getValue();
                 break;
             case ISEMPTY_CODE:
-                tvIsempty.setText(companyDataBean.getName());
+                tvEmptyAccount.setText(companyDataBean.getName());
                 addCompanyHttpParam.emptyAccount = companyDataBean.getValue();
                 break;
             case PRODUCT_CODE:
@@ -293,7 +304,73 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
                 tvListedType.setText(companyDataBean.getName());
                 addCompanyHttpParam.listedType = companyDataBean.getValue();
                 break;
+            case R.id.tv_seatNo:
+                selectComunty(tvSeatNo);
+                break;
+            case R.id.tv_buildNo:
+                selectComunty(tvBuildNo);
+                break;
+            case R.id.tv_businessNo:
+                selectComunty(tvBusinessNo);
+                break;
         }
+    }
+
+    private void initCustomTimePicker() {
+
+        /**
+         * @description
+         *
+         * 注意事项：
+         * 1.自定义布局中，id为 optionspicker 或者 timepicker 的布局以及其子控件必须要有，否则会报空指针.
+         * 具体可参考demo 里面的两个自定义layout布局。
+         * 2.因为系统Calendar的月份是从0-11的,所以如果是调用Calendar的set方法来设置时间,月份的范围也要是从0-11
+         * setRangDate方法控制起始终止时间(如果不设置范围，则使用默认时间1900-2100年，此段代码可注释)
+         */
+        Calendar selectedDate = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(1990, 1, 23);
+        Calendar endDate = Calendar.getInstance();
+        endDate.set(2027, 2, 28);
+        //时间选择器 ，自定义布局
+        pvCustomTime = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {//选中事件回调
+                String time = TimeUtils.getTime(date);
+                tvInTime.setText(time);
+                addCompanyHttpParam.inTime = time;//24
+            }
+        }).setDate(selectedDate)
+                .setRangDate(startDate, endDate)
+                .setLayoutRes(R.layout.dialog_select_date, new CustomListener() {
+
+                    @Override
+                    public void customLayout(View v) {
+                        final TextView tvConfirm = (TextView) v.findViewById(R.id.tv_confirm);
+                        TextView tvCancle = (TextView) v.findViewById(R.id.tv_cancle);
+                        tvConfirm.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                pvCustomTime.returnData();
+                                pvCustomTime.dismiss();
+                            }
+                        });
+                        tvCancle.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                pvCustomTime.dismiss();
+                            }
+                        });
+                    }
+                })
+                .setContentSize(18)
+                .setType(new boolean[]{true, true, true, false, false, false})
+                .setLabel("年", "月", "日", "时", "分", "秒")
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(0, 0, 0, 40, 0, -40)
+                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .setDividerColor(0xFF24AD9D)
+                .build();
     }
 
     public void setVisibleAndGo(View view, boolean isVisiable) {
@@ -305,23 +382,36 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     }
 
     public void setPostParam() {
-        addCompanyHttpParam.buildNo = evBuildname.getText().toString();
-        addCompanyHttpParam.community = evCommunity.getText().toString();
-        addCompanyHttpParam.companyArea = evCompanyArea.getText().toString();
-        addCompanyHttpParam.companyLicense = evCompanyLicense.getText().toString();
-        addCompanyHttpParam.companyName = evCompanyName.getText().toString();
-        //addCompanyHttpParam.companyTax=evCom
-        addCompanyHttpParam.contactPerson = evContactPerson.getText().toString();
-        addCompanyHttpParam.contactPhone = evContactPhone.getText().toString();
-        addCompanyHttpParam.economicType = evJingjixingzhi.getText().toString();
-       // addCompanyHttpParam.employNum = evContactPerson.getText().toString();
-        addCompanyHttpParam.floorNo = evFloorNo.getText().toString();
-        addCompanyHttpParam.legalPhone = evLegalPhone.getText().toString();
-        addCompanyHttpParam.legalPerson = evQiyefaren.getText().toString();
-     //   addCompanyHttpParam. = evContactPerson.getText().toString();
-        addCompanyHttpParam.contactPerson = evContactPerson.getText().toString();
-        addCompanyHttpParam.contactPerson = evContactPerson.getText().toString();
-
-
+        addCompanyHttpParam.buildName = evBuildname.getText().toString();//1
+        addCompanyHttpParam.community = evCommunity.getText().toString();//2
+        addCompanyHttpParam.companyArea = evCompanyArea.getText().toString();//3
+        addCompanyHttpParam.companyLicense = evCompanyLicense.getText().toString();//4
+        addCompanyHttpParam.companyName = evCompanyName.getText().toString();//5
+        addCompanyHttpParam.companyTax = evCompanyTax.getText().toString().trim();//6
+        addCompanyHttpParam.contactPerson = evContactPerson.getText().toString();//7
+        addCompanyHttpParam.contactPhone = evContactPhone.getText().toString();//8
+        addCompanyHttpParam.economicType = evEconomicType.getText().toString();//9
+        addCompanyHttpParam.employNum = evEmployNum.getText().toString();//10
+        addCompanyHttpParam.floorNo = evFloorNo.getText().toString();//11
+        addCompanyHttpParam.legalPhone = evLegalPhone.getText().toString();//12
+        addCompanyHttpParam.legalPerson = evLegalPerson.getText().toString();//13
+        addCompanyHttpParam.headPerson = evHeadPerson.getText().toString();//14
+        addCompanyHttpParam.contactPerson = evContactPerson.getText().toString();//15
+        addCompanyHttpParam.roomMaster = evRoomMaster.getText().toString();//16
+        addCompanyHttpParam.monthRent = evMonthRent.getText().toString();//17
+        addCompanyHttpParam.regAddress = evRegAddress.getText().toString();//18
+        addCompanyHttpParam.roomNo = evRoomNo.getText().toString();//19
+        addCompanyHttpParam.seatNo = evSliceName.getText().toString();//20
+        addCompanyHttpParam.taxAgency = evTaxAgency.getText().toString();//21
+        addCompanyHttpParam.companyCredit = evCompanyCredit.getText().toString();//23
+        httpManger.doPostHttp(addCompanyHttpParam);
     }
+
+    public void selectComunty(View view) {
+//        tvSeatNo.setEnabled(true);
+//        tvBuildNo.setEnabled(true);
+//        tvBusinessNo.setEnabled(true);
+        view.setEnabled(false);
+    }
+
 }

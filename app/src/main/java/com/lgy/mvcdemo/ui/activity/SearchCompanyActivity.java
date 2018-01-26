@@ -1,6 +1,5 @@
 package com.lgy.mvcdemo.ui.activity;
 
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
@@ -13,7 +12,6 @@ import com.lgy.mvcdemo.utils.SysUtils;
 import com.lgy.mvcdemo.view.NaviTitleView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2018/1/24.
@@ -53,10 +51,4 @@ public class SearchCompanyActivity extends BaseActivity {
         return R.layout.activity_notice_board;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 /**
  * Created by Administrator on 2018/1/23.
+ * 查询企业信息（command=5）
  */
 
 public class SearchCompanyHttpParam extends BaseHttpParam {

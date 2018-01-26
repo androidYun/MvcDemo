@@ -45,5 +45,5 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.31'
     compile 'com.zhy:base-adapter:3.0.3'
     compile 'com.zhy:base-rvadapter:3.0.3'
-    compile 'com.mylhyl:circleDialog:2.2.0'
+    compile 'com.contrarywind:Android-PickerView:3.2.7'
 }

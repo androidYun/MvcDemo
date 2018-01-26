@@ -24,180 +24,150 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <LinearLayout style="@style/build_infor_ll">
 
-                <LinearLayout style="@style/build_infor_ll">
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="公司名称" />
 
-                    <TextView
-                        style="@style/build_infor_title"
-                        android:text="公司名称" />
-
-                    <EditText
-                        android:id="@+id/ev_company_name"
-                        style="@style/build_infor_content"
-                        android:hint="请填写公司名称" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/build_infor_ll">
-
-                    <TextView
-                        style="@style/build_infor_title"
-                        android:text="联系方式" />
-
-                    <EditText
-                        android:id="@+id/ev_contact_phone"
-                        style="@style/build_infor_content"
-                        android:hint="请填写联系方式" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/build_infor_ll">
-
-                    <TextView
-                        style="@style/build_infor_title"
-                        android:text="联系人" />
-
-                    <EditText
-                        android:id="@+id/ev_contact_person"
-                        style="@style/build_infor_content"
-                        android:hint="请填写联系人" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/build_infor_ll">
-
-                    <TextView
-                        style="@style/build_infor_title"
-                        android:text="税务代码" />
-
-                    <EditText
-                        android:id="@+id/ev_companyCredit"
-                        style="@style/build_infor_content"
-                        android:hint="请填写税务代码" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/build_infor_ll">
-
-                    <TextView
-                        style="@style/build_infor_title"
-                        android:text="登记证" />
-
-                    <EditText
-                        android:id="@+id/tv_company_tax"
-                        style="@style/build_infor_content"
-                        android:hint="请填写登记证" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/build_infor_ll">
-
-                    <TextView
-                        style="@style/build_infor_title"
-                        android:text="法人电话" />
-
-                    <EditText
-                        android:id="@+id/ev_legal_phone"
-                        style="@style/build_infor_content"
-                        android:hint="请填写法人电话" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/build_infor_ll">
-
-                    <TextView
-                        style="@style/build_infor_title"
-                        android:text="行业" />
-
-                    <TextView
-                        android:id="@+id/tv_industry"
-                        style="@style/build_infor_content"
-                        android:hint="请选择行业" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/build_infor_ll">
-
-                    <TextView
-                        style="@style/build_infor_title"
-                        android:text="经济性质" />
-
-                    <EditText
-                        android:id="@+id/ev_jingjixingzhi"
-                        style="@style/build_infor_content"
-                        android:hint="请填写经济性质" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/build_infor_ll">
-
-                    <TextView
-                        style="@style/build_infor_title"
-                        android:text="企业法人" />
-
-                    <EditText
-                        android:id="@+id/ev_qiyefaren"
-                        style="@style/build_infor_content"
-                        android:hint="请填写企业法人" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/build_infor_ll">
-
-                    <TextView
-                        style="@style/build_infor_title"
-                        android:text="企业负责人" />
-
-                    <EditText
-                        android:id="@+id/ev_qiyefuzeren"
-                        style="@style/build_infor_content"
-                        android:hint="请填写企业负责人" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/build_infor_ll">
-
-                    <TextView
-                        style="@style/build_infor_title"
-                        android:text="企业类型" />
-
-                    <EditText
-                        android:id="@+id/tv_company_type"
-                        style="@style/build_infor_content"
-                        android:hint="请选择企业类型" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/build_infor_ll">
-
-                    <TextView
-                        style="@style/build_infor_title"
-                        android:text="注册地址" />
-
-                    <EditText
-                        android:id="@+id/ev_reg_address"
-                        style="@style/build_infor_content"
-                        android:hint="请填写注册地址" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/build_infor_ll">
-
-                    <TextView
-                        style="@style/build_infor_title"
-                        android:text="商业类型" />
-
-                    <EditText
-                        android:id="@+id/ev_shangshileixing"
-                        style="@style/build_infor_content"
-                        android:hint="请填写商业类型" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/build_infor_ll">
-
-                    <TextView
-                        style="@style/build_infor_title"
-                        android:text="营业执照" />
-
-                    <EditText
-                        android:id="@+id/ev_company_license"
-                        style="@style/build_infor_content"
-                        android:hint="请填写营业执照" />
-                </LinearLayout>
-
+                <EditText
+                    android:id="@+id/ev_company_name"
+                    style="@style/build_infor_content"
+                    android:hint="请填写公司名称" />
             </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="联系方式" />
+
+                <EditText
+                    android:id="@+id/ev_contact_phone"
+                    style="@style/build_infor_content"
+                    android:hint="请填写联系方式" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="联系人" />
+
+                <EditText
+                    android:id="@+id/ev_contact_person"
+                    style="@style/build_infor_content"
+                    android:hint="请填写联系人" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="税务代码" />
+
+                <EditText
+                    android:id="@+id/ev_companyCredit"
+                    style="@style/build_infor_content"
+                    android:hint="请填写税务代码" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="登记证" />
+
+                <EditText
+                    android:id="@+id/ev_company_tax"
+                    style="@style/build_infor_content"
+                    android:hint="请填写登记证" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="法人电话" />
+
+                <EditText
+                    android:id="@+id/ev_legal_phone"
+                    style="@style/build_infor_content"
+                    android:hint="请填写法人电话" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="行业" />
+
+                <TextView
+                    android:id="@+id/tv_industry"
+                    style="@style/build_infor_content"
+                    android:hint="请选择行业" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="经济性质" />
+
+                <EditText
+                    android:id="@+id/ev_economicType"
+                    style="@style/build_infor_content"
+                    android:hint="请填写经济性质" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="企业法人" />
+
+                <EditText
+                    android:id="@+id/ev_legalPerson"
+                    style="@style/build_infor_content"
+                    android:hint="请填写企业法人" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="企业负责人" />
+
+                <EditText
+                    android:id="@+id/ev_headPerson"
+                    style="@style/build_infor_content"
+                    android:hint="请填写企业负责人" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="企业类型" />
+
+                <EditText
+                    android:id="@+id/tv_company_type"
+                    style="@style/build_infor_content"
+                    android:hint="请选择企业类型" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="注册地址" />
+
+                <EditText
+                    android:id="@+id/ev_regAddress"
+                    style="@style/build_infor_content"
+                    android:hint="请填写注册地址" />
+            </LinearLayout>
+
 
             <LinearLayout style="@style/build_infor_ll">
 
@@ -215,12 +185,25 @@
 
                 <TextView
                     style="@style/build_infor_title"
+                    android:text="营业执照" />
+
+                <EditText
+                    android:id="@+id/ev_company_license"
+                    style="@style/build_infor_content"
+                    android:hint="请填写营业执照" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
                     android:text="注册资本" />
 
                 <EditText
-                    android:id="@+id/ev_zhuceZiben"
+                    android:id="@+id/ev_regMoney"
                     style="@style/build_infor_content"
-                    android:hint="请输入注册资本" />
+                    android:hint="请输入注册资本"
+                    android:inputType="numberDecimal" />
             </LinearLayout>
 
 
@@ -283,7 +266,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <LinearLayout style="@style/build_infor_ll">
 
@@ -309,40 +292,6 @@
                     android:hint="请填写公司面积" />
             </LinearLayout>
 
-            <LinearLayout style="@style/build_infor_ll">
-
-                <TextView
-                    style="@style/build_infor_title"
-                    android:text="座号/楼号/商业区" />
-
-                <TextView
-                    android:id="@+id/tv_company_no"
-                    android:layout_width="64dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/shape_select_build"
-                    android:drawableRight="@mipmap/sj"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
-                    android:text="座号"
-                    android:textSize="12dp" />
-
-                <EditText
-                    android:id="@+id/ev_company_no"
-                    style="@style/build_infor_content"
-                    android:hint="请填写座号" />
-            </LinearLayout>
-            <LinearLayout style="@style/build_infor_ll">
-
-                <TextView
-                    style="@style/build_infor_title"
-                    android:text="社区" />
-
-                <EditText
-                    android:id="@+id/ev_community"
-                    style="@style/build_infor_content"
-                    android:hint="请填写社区" />
-            </LinearLayout>
 
             <LinearLayout style="@style/build_infor_ll">
 
@@ -372,10 +321,75 @@
 
                 <TextView
                     style="@style/build_infor_title"
+                    android:text="分区" />
+
+                <EditText
+                    android:id="@+id/ev_company_no"
+                    style="@style/build_infor_content"
+                    android:hint="请填写" />
+
+                <TextView
+                    android:id="@+id/tv_company_no"
+                    android:layout_width="64dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/shape_select_build"
+                    android:drawableRight="@mipmap/sj"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:text="座号"
+                    android:textSize="12dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_seatNo"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_comunty"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:text="座号" />
+
+                <TextView
+                    android:id="@+id/tv_buildNo"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_comunty"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:text="楼号" />
+
+                <TextView
+                    android:id="@+id/tv_businessNo"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_comunty"
+                    android:gravity="center"
+                    android:padding="3dp"
+                    android:text="商业" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
+                    android:text="社区" />
+
+                <EditText
+                    android:id="@+id/ev_community"
+                    style="@style/build_infor_content"
+                    android:hint="请填写社区" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/build_infor_ll">
+
+                <TextView
+                    style="@style/build_infor_title"
                     android:text="街道" />
 
                 <EditText
-                    android:id="@+id/ev_jieDao"
+                    android:id="@+id/ev_sliceName"
                     style="@style/build_infor_content"
                     android:hint="请输入街道" />
             </LinearLayout>
@@ -402,7 +416,7 @@
                     android:text="产权单位" />
 
                 <EditText
-                    android:id="@+id/ev_chanquandanwei"
+                    android:id="@+id/ev_roomMaster"
                     style="@style/build_infor_content"
                     android:hint="请填写产权单位" />
             </LinearLayout>
@@ -426,9 +440,10 @@
                     android:text="从业人员" />
 
                 <EditText
-                    android:id="@+id/ev_congyerenyuan"
+                    android:id="@+id/ev_employNum"
                     style="@style/build_infor_content"
-                    android:hint="请填写从业人员" />
+                    android:hint="请填写从业人员数量"
+                    android:inputType="number" />
             </LinearLayout>
 
             <LinearLayout style="@style/build_infor_ll">
@@ -438,7 +453,7 @@
                     android:text="是否是空挂户" />
 
                 <TextView
-                    android:id="@+id/tv_isempty"
+                    android:id="@+id/tv_emptyAccount"
                     style="@style/build_infor_content"
                     android:hint="请选择是否是空挂户" />
             </LinearLayout>
@@ -450,7 +465,7 @@
                     android:text="纳税机构" />
 
                 <EditText
-                    android:id="@+id/ev_nasuijigou"
+                    android:id="@+id/ev_taxAgency"
                     style="@style/build_infor_content"
                     android:hint="请填写纳税机构" />
             </LinearLayout>
@@ -461,8 +476,8 @@
                     style="@style/build_infor_title"
                     android:text="入驻时间" />
 
-                <EditText
-                    android:id="@+id/ev_ruzhutime"
+                <TextView
+                    android:id="@+id/tv_inTime"
                     style="@style/build_infor_content"
                     android:hint="请填写入驻时间" />
             </LinearLayout>
@@ -470,13 +485,15 @@
             <LinearLayout style="@style/build_infor_ll">
 
                 <TextView
-                    android:id="@+id/ev_zhujin"
+
                     style="@style/build_infor_title"
                     android:text="月租金" />
 
                 <EditText
+                    android:id="@+id/ev_monthRent"
                     style="@style/build_infor_content"
-                    android:hint="请填写月租金" />
+                    android:hint="请填写月租金"
+                    android:inputType="numberDecimal" />
             </LinearLayout>
 
         </LinearLayout>
