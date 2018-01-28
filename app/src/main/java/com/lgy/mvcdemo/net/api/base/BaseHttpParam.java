@@ -29,13 +29,13 @@ public abstract class BaseHttpParam {
 
     private int command;//接口编号
 
-    private String  userId;//接口Id
+    private String userId;//接口Id
 
 
     public BaseHttpParam() {
         userId = UserSpUtils.getUserId();
         paramMap = new HashMap<>();
-        paramMap.put("userId", 0 + "");
+        paramMap.put("userId", UserSpUtils.getUserId());
         legalParam = new LegalParam();
         legalParam.setLegal(false);
     }

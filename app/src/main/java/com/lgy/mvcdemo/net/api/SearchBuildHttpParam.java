@@ -15,12 +15,10 @@ import java.util.HashMap;
 public class SearchBuildHttpParam extends BaseHttpParam {
     public String buildName;
 
-
-
     public SearchBuildHttpParam() {
         super();
         setHttpMethod(HttpMethod.POST);
-        setCommand(6);
+        setCommand(100);
         setNeekToken(false);
         setNeedProgress(true);
     }

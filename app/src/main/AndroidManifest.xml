@@ -27,6 +27,7 @@
         <activity android:name=".ui.activity.PolicyRuleActivity"></activity>
         <activity android:name=".ui.activity.SearchCompanyActivity"></activity>
         <activity android:name=".ui.activity.SetActivity"></activity>
+        <activity android:name=".ui.activity.SearchBuildActivity"></activity>
 
 
         <meta-data

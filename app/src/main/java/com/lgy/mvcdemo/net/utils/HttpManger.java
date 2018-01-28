@@ -43,7 +43,7 @@ public class HttpManger {
                     httpListener.onFail(baseHttpParam.getCommand(), "请求数据失败");
                 } else {
                     BaseResp baseResp = FastJsonUtil.getObject(result, BaseResp.class);
-                    if (baseResp.getResult() == 1) {//成功
+                    if (baseResp.getResult() == 1||baseResp.getResult()==0) {//成功
                         httpListener.onSuccess(baseResp.getCommand(), result);
                     } else {
                         httpListener.onFail(baseResp.getCommand(), baseResp.getErrorMsg());

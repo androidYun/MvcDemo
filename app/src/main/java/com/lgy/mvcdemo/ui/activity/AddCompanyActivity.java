@@ -1,5 +1,8 @@
 package com.lgy.mvcdemo.ui.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,12 +13,17 @@ import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
 import com.lgy.mvcdemo.R;
 import com.lgy.mvcdemo.bean.CompanyDataBean;
+import com.lgy.mvcdemo.event.SearchBuildEvent;
 import com.lgy.mvcdemo.listener.BuildHeadListener;
 import com.lgy.mvcdemo.listener.SelectContentListener;
 import com.lgy.mvcdemo.net.api.AddCompanyHttpParam;
 import com.lgy.mvcdemo.utils.TimeUtils;
 import com.lgy.mvcdemo.view.AddCompanyHeadView;
 import com.lgy.mvcdemo.view.pop.SelectContentPop;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,6 +32,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.lgy.mvcdemo.R.id.tv_seatNo;
 
 /**
  * Created by Administrator on 2018/1/24.
@@ -82,13 +92,12 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     EditText evLegalPhone;
     @BindView(R.id.ev_company_license)
     EditText evCompanyLicense;
-
-    @BindView(R.id.ev_buildname)
-    EditText evBuildname;
+    @BindView(R.id.tv_buildname)
+    TextView tvBuildname;
     @BindView(R.id.ev_companyArea)
     EditText evCompanyArea;
-    @BindView(R.id.ev_company_no)
-    EditText evCompanyNo;
+    @BindView(R.id.ev_part_no)
+    EditText evPartNo;
     @BindView(R.id.ev_floorNo)
     EditText evFloorNo;
     @BindView(R.id.ev_roomNo)
@@ -121,7 +130,7 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     TextView tvInTime;
     @BindView(R.id.ev_monthRent)
     EditText evMonthRent;
-    @BindView(R.id.tv_seatNo)
+    @BindView(tv_seatNo)
     TextView tvSeatNo;
     @BindView(R.id.tv_buildNo)
     TextView tvBuildNo;
@@ -153,7 +162,16 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     private List<CompanyDataBean> listedTypeList = new ArrayList<>();//上市类型
 
     private AddCompanyHttpParam addCompanyHttpParam;
+
     private TimePickerView pvCustomTime;
+
+    private String selectPart;//分区选择
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
 
     @Override
     public int getContentViewId() {
@@ -165,6 +183,8 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
         super.initView();
         addCompanyHttpParam = new AddCompanyHttpParam();
         initCustomTimePicker();
+        tvSeatNo.setSelected(true);
+        selectPart = "seatNo";
     }
 
     @Override
@@ -217,7 +237,7 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
         listedTypeContentPop = new SelectContentPop(this, LISTEDTYPE_CODE, listedTypeList, this);
     }
 
-    @OnClick({R.id.tv_company_no, R.id.tv_industry, R.id.tv_company_type, R.id.tv_listed_type, R.id.tv_product_type, R.id.tv_emptyAccount, R.id.btn_confirm, R.id.tv_inTime, R.id.tv_seatNo, R.id.tv_buildNo, R.id.tv_businessNo})
+    @OnClick({R.id.tv_buildname, R.id.tv_company_no, R.id.tv_industry, R.id.tv_company_type, R.id.tv_listed_type, R.id.tv_product_type, R.id.tv_emptyAccount, R.id.btn_confirm, R.id.tv_inTime, tv_seatNo, R.id.tv_buildNo, R.id.tv_businessNo})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_company_no:
@@ -243,6 +263,21 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
                 break;
             case R.id.tv_inTime:
                 pvCustomTime.show();
+                break;
+            case R.id.tv_buildname:
+                startActivity(new Intent(this, SearchBuildActivity.class));
+                break;
+            case tv_seatNo:
+                selectComunty(tvSeatNo);
+                selectPart = "seatNo";
+                break;
+            case R.id.tv_buildNo:
+                selectComunty(tvBuildNo);
+                selectPart = "buildNo";
+                break;
+            case R.id.tv_businessNo:
+                selectComunty(tvBusinessNo);
+                selectPart = "businessNo";
                 break;
         }
     }
@@ -304,15 +339,7 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
                 tvListedType.setText(companyDataBean.getName());
                 addCompanyHttpParam.listedType = companyDataBean.getValue();
                 break;
-            case R.id.tv_seatNo:
-                selectComunty(tvSeatNo);
-                break;
-            case R.id.tv_buildNo:
-                selectComunty(tvBuildNo);
-                break;
-            case R.id.tv_businessNo:
-                selectComunty(tvBusinessNo);
-                break;
+
         }
     }
 
@@ -341,36 +368,36 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
                 addCompanyHttpParam.inTime = time;//24
             }
         }).setDate(selectedDate)
-                .setRangDate(startDate, endDate)
-                .setLayoutRes(R.layout.dialog_select_date, new CustomListener() {
+                    .setRangDate(startDate, endDate)
+                    .setLayoutRes(R.layout.dialog_select_date, new CustomListener() {
 
-                    @Override
-                    public void customLayout(View v) {
-                        final TextView tvConfirm = (TextView) v.findViewById(R.id.tv_confirm);
-                        TextView tvCancle = (TextView) v.findViewById(R.id.tv_cancle);
-                        tvConfirm.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                pvCustomTime.returnData();
-                                pvCustomTime.dismiss();
-                            }
-                        });
-                        tvCancle.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                pvCustomTime.dismiss();
-                            }
-                        });
-                    }
-                })
-                .setContentSize(18)
-                .setType(new boolean[]{true, true, true, false, false, false})
-                .setLabel("年", "月", "日", "时", "分", "秒")
-                .setLineSpacingMultiplier(1.2f)
-                .setTextXOffset(0, 0, 0, 40, 0, -40)
-                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
-                .setDividerColor(0xFF24AD9D)
-                .build();
+                        @Override
+                        public void customLayout(View v) {
+                            final TextView tvConfirm = (TextView) v.findViewById(R.id.tv_confirm);
+                            TextView tvCancle = (TextView) v.findViewById(R.id.tv_cancle);
+                            tvConfirm.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    pvCustomTime.returnData();
+                                    pvCustomTime.dismiss();
+                                }
+                            });
+                            tvCancle.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    pvCustomTime.dismiss();
+                                }
+                            });
+                        }
+                    })
+                    .setContentSize(18)
+                    .setType(new boolean[]{true, true, true, false, false, false})
+                    .setLabel("年", "月", "日", "时", "分", "秒")
+                    .setLineSpacingMultiplier(1.2f)
+                    .setTextXOffset(0, 0, 0, 40, 0, -40)
+                    .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                    .setDividerColor(0xFF24AD9D)
+                    .build();
     }
 
     public void setVisibleAndGo(View view, boolean isVisiable) {
@@ -382,7 +409,7 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     }
 
     public void setPostParam() {
-        addCompanyHttpParam.buildName = evBuildname.getText().toString();//1
+        addCompanyHttpParam.buildName = tvBuildname.getText().toString();//1
         addCompanyHttpParam.community = evCommunity.getText().toString();//2
         addCompanyHttpParam.companyArea = evCompanyArea.getText().toString();//3
         addCompanyHttpParam.companyLicense = evCompanyLicense.getText().toString();//4
@@ -404,14 +431,40 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
         addCompanyHttpParam.seatNo = evSliceName.getText().toString();//20
         addCompanyHttpParam.taxAgency = evTaxAgency.getText().toString();//21
         addCompanyHttpParam.companyCredit = evCompanyCredit.getText().toString();//23
+        addCompanyHttpParam.seatNo = "";
+        addCompanyHttpParam.businessNo = "";
+        addCompanyHttpParam.buildNo = "";
+        if (selectPart.equals("seatNo")) {
+            addCompanyHttpParam.seatNo = evPartNo.getText().toString().trim();
+        } else if (selectPart.equals("businessNo")) {
+            addCompanyHttpParam.businessNo = evPartNo.getText().toString().trim();
+        } else {
+            addCompanyHttpParam.buildNo = evPartNo.getText().toString().trim();
+        }
         httpManger.doPostHttp(addCompanyHttpParam);
+
     }
 
     public void selectComunty(View view) {
-//        tvSeatNo.setEnabled(true);
-//        tvBuildNo.setEnabled(true);
-//        tvBusinessNo.setEnabled(true);
+        tvSeatNo.setEnabled(true);
+        tvBuildNo.setEnabled(true);
+        tvBusinessNo.setEnabled(true);
+        tvSeatNo.setSelected(false);
+        tvBuildNo.setSelected(false);
+        tvBusinessNo.setSelected(false);
         view.setEnabled(false);
+        view.setSelected(true);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(SearchBuildEvent event) {
+        addCompanyHttpParam.buildName = event.getBuildName().toString().trim();
+        tvBuildname.setText(event.getBuildName());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

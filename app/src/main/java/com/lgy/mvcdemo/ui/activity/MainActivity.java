@@ -74,6 +74,7 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(this, SearchCompanyActivity.class));
                 break;
             case R.id.tv_build_infor:
+                startActivity(new Intent(this, SearchBuildActivity.class));
                 break;
             case R.id.tv_set:
                 startActivity(new Intent(this, SetActivity.class));
