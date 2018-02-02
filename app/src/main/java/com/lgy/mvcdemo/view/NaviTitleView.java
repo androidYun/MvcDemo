@@ -78,7 +78,7 @@ public class NaviTitleView extends RelativeLayout {
         centerTitle = typedArray.getString(R.styleable.NaviTitleView_center_title);
         rightTitle = typedArray.getString(R.styleable.NaviTitleView_right_title);
         rightTitleColor = typedArray.getColor(R.styleable.NaviTitleView_right_title_color, ContextCompat.getColor(context, R.color.base_color));
-        titleBgColor = typedArray.getColor(R.styleable.NaviTitleView_title_bg_color, ContextCompat.getColor(context, R.color.white));
+        titleBgColor = typedArray.getColor(R.styleable.NaviTitleView_title_bg_color, ContextCompat.getColor(context, R.color.default_background_color));
         typedArray.recycle();
         initView(context);
         inflateView();
@@ -91,7 +91,9 @@ public class NaviTitleView extends RelativeLayout {
     }
 
     public void inflateView() {
-        rlLayout.setBackgroundColor(titleBgColor);//设置背景色
+        if (titleBgColor != 0) {
+            rlLayout.setBackgroundColor(titleBgColor);//设置背景色
+        }
         tvTitle.setText(centerTitle);
         if (leftResId == 0) {
             ivLeft.setImageResource(leftResId);

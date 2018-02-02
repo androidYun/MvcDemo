@@ -57,11 +57,6 @@ public class SearchBuildResp {
     }
 
     public static class BuildListBean {
-        /**
-         * buildId : 1
-         * buildName : 清华园
-         */
-
         private int buildId;
         private String buildName;
 

@@ -18,7 +18,7 @@ public class SearchBuildHttpParam extends BaseHttpParam {
     public SearchBuildHttpParam() {
         super();
         setHttpMethod(HttpMethod.POST);
-        setCommand(100);
+        setCommand(6);
         setNeekToken(false);
         setNeedProgress(true);
     }

@@ -2,9 +2,11 @@ package com.lgy.mvcdemo.ui.adapter;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.TextView;
 
 import com.lgy.mvcdemo.R;
 import com.lgy.mvcdemo.net.model.resp.LowRuleResp;
+import com.lgy.mvcdemo.utils.SpanUtils;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -27,6 +29,7 @@ public class PolicyRuleAdapter extends CommonAdapter<LowRuleResp.PolicyListBean>
         viewHolder.setText(R.id.tv_express_text, policyListBean.getTitle());
         viewHolder.setText(R.id.tv_time, policyListBean.getCreateTime());
         viewHolder.setText(R.id.tv_content, policyListBean.getContent());
+        ((TextView) viewHolder.getView(R.id.tv_notice)).setText(SpanUtils.getNoticeSpan("公告"));
         if (position == 0) {
             viewHolder.getView(R.id.view_top_line).setVisibility(View.INVISIBLE);
         } else {

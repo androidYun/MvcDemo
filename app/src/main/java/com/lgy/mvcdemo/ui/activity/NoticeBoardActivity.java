@@ -1,14 +1,12 @@
 package com.lgy.mvcdemo.ui.activity;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-
 import com.lgy.mvcdemo.R;
 import com.lgy.mvcdemo.net.api.MessageHttpParam;
 import com.lgy.mvcdemo.net.model.resp.NoticeBoardResp;
 import com.lgy.mvcdemo.ui.adapter.NoticeBoardAdapter;
 import com.lgy.mvcdemo.utils.FastJsonUtil;
 import com.lgy.mvcdemo.view.NaviTitleView;
+import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +23,7 @@ public class NoticeBoardActivity extends BaseActivity {
     @BindView(R.id.navi_view)
     NaviTitleView naviView;
     @BindView(R.id.rv_notice)
-    RecyclerView rvNotice;
+    PullLoadMoreRecyclerView rvNotice;
 
     MessageHttpParam messageHttpParam;
 
@@ -41,11 +39,24 @@ public class NoticeBoardActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
-        rvNotice.setLayoutManager(new LinearLayoutManager(this));
+        rvNotice.setLinearLayout();
+        rvNotice.setPullRefreshEnable(false);
+        rvNotice.setPushRefreshEnable(false);
         noticeBoardAdapter = new NoticeBoardAdapter(this, R.layout.item_notice_layout, mDataList);
         rvNotice.setAdapter(noticeBoardAdapter);
         messageHttpParam = new MessageHttpParam();
         httpManger.doPostHttp(messageHttpParam);
+        rvNotice.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+                httpManger.doPostHttp(messageHttpParam);
+            }
+
+            @Override
+            public void onLoadMore() {
+                httpManger.doPostHttp(messageHttpParam);
+            }
+        });
 
     }
 
@@ -60,5 +71,12 @@ public class NoticeBoardActivity extends BaseActivity {
                 noticeBoardAdapter.notifyDataSetChanged();
             }
         }
+        rvNotice.setPullLoadMoreCompleted();
+    }
+
+    @Override
+    public void onFail(int command, String errorMsg) {
+        super.onFail(command, errorMsg);
+        rvNotice.setPullLoadMoreCompleted();
     }
 }

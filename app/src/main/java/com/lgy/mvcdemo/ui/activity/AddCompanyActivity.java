@@ -17,9 +17,15 @@ import com.lgy.mvcdemo.event.SearchBuildEvent;
 import com.lgy.mvcdemo.listener.BuildHeadListener;
 import com.lgy.mvcdemo.listener.SelectContentListener;
 import com.lgy.mvcdemo.net.api.AddCompanyHttpParam;
+import com.lgy.mvcdemo.utils.LogUtil;
+import com.lgy.mvcdemo.utils.StringUtils;
 import com.lgy.mvcdemo.utils.TimeUtils;
+import com.lgy.mvcdemo.utils.ToastUtil;
 import com.lgy.mvcdemo.view.AddCompanyHeadView;
 import com.lgy.mvcdemo.view.pop.SelectContentPop;
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -52,6 +58,8 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
 
     private final static int LISTEDTYPE_CODE = 1005;//上市类型
 
+    private final static int SAOMIAOERWEIMA = 2000;//扫描二维码
+
     @BindView(R.id.btn_confirm)
     Button btnConfirm;
     @BindView(R.id.tv_industry)
@@ -64,8 +72,6 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     TextView tvProductType;
     @BindView(R.id.view_base_infor)
     AddCompanyHeadView viewBaseInfor;
-    @BindView(R.id.tv_company_no)
-    TextView tvCompanyNo;
     @BindView(R.id.ll_base_infor)
     LinearLayout llBaseInfor;
     @BindView(R.id.view_business_license)
@@ -136,6 +142,10 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     TextView tvBuildNo;
     @BindView(R.id.tv_businessNo)
     TextView tvBusinessNo;
+    @BindView(R.id.ll_input_license)
+    LinearLayout llInputLicense;
+    @BindView(R.id.ll_logdata)
+    LinearLayout llLogdata;
     private SelectContentPop industryContentPop;//行业数据
 
     private SelectContentPop buildNoContentPop;//楼宇编号数据
@@ -171,6 +181,7 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
+        ZXingLibrary.initDisplayOpinion(this);
     }
 
     @Override
@@ -237,12 +248,9 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
         listedTypeContentPop = new SelectContentPop(this, LISTEDTYPE_CODE, listedTypeList, this);
     }
 
-    @OnClick({R.id.tv_buildname, R.id.tv_company_no, R.id.tv_industry, R.id.tv_company_type, R.id.tv_listed_type, R.id.tv_product_type, R.id.tv_emptyAccount, R.id.btn_confirm, R.id.tv_inTime, tv_seatNo, R.id.tv_buildNo, R.id.tv_businessNo})
+    @OnClick({R.id.tv_handle_record, R.id.ll_logdata, R.id.tv_buildname, R.id.tv_industry, R.id.tv_company_type, R.id.tv_listed_type, R.id.tv_product_type, R.id.tv_emptyAccount, R.id.btn_confirm, R.id.tv_inTime, tv_seatNo, R.id.tv_buildNo, R.id.tv_businessNo})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.tv_company_no:
-                industryContentPop.showPopupWindow();
-                break;
             case R.id.tv_industry:
                 industryContentPop.showPopupWindow();
                 break;
@@ -265,7 +273,12 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
                 pvCustomTime.show();
                 break;
             case R.id.tv_buildname:
-                startActivity(new Intent(this, SearchBuildActivity.class));
+                Intent intent1 = new Intent(this, SearchBuildActivity.class);
+                intent1.putExtra("code", SearchBuildActivity.LOOK_DETAIL_CODE);
+                startActivity(intent1);
+                break;
+            case R.id.ll_logdata:
+                applyForpermission(SCAN_QR_CODE);
                 break;
             case tv_seatNo:
                 selectComunty(tvSeatNo);
@@ -278,6 +291,9 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
             case R.id.tv_businessNo:
                 selectComunty(tvBusinessNo);
                 selectPart = "businessNo";
+                break;
+            case R.id.tv_handle_record://手动录入
+                llInputLicense.setVisibility(View.VISIBLE);
                 break;
         }
     }
@@ -320,7 +336,6 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
                 addCompanyHttpParam.industry = companyDataBean.getValue();
                 break;
             case BUILDNO_CODE:
-                tvCompanyNo.setText(companyDataBean.getName());
                 addCompanyHttpParam.buildNo = companyDataBean.getValue();
                 break;
             case ISEMPTY_CODE:
@@ -341,6 +356,13 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
                 break;
 
         }
+    }
+
+    @Override
+    protected void onPermissionSuccess(int code) {
+        super.onPermissionSuccess(code);
+        Intent intent = new Intent(AddCompanyActivity.this, CaptureActivity.class);
+        startActivityForResult(intent, SAOMIAOERWEIMA);
     }
 
     private void initCustomTimePicker() {
@@ -368,36 +390,36 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
                 addCompanyHttpParam.inTime = time;//24
             }
         }).setDate(selectedDate)
-                    .setRangDate(startDate, endDate)
-                    .setLayoutRes(R.layout.dialog_select_date, new CustomListener() {
+                .setRangDate(startDate, endDate)
+                .setLayoutRes(R.layout.dialog_select_date, new CustomListener() {
 
-                        @Override
-                        public void customLayout(View v) {
-                            final TextView tvConfirm = (TextView) v.findViewById(R.id.tv_confirm);
-                            TextView tvCancle = (TextView) v.findViewById(R.id.tv_cancle);
-                            tvConfirm.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    pvCustomTime.returnData();
-                                    pvCustomTime.dismiss();
-                                }
-                            });
-                            tvCancle.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    pvCustomTime.dismiss();
-                                }
-                            });
-                        }
-                    })
-                    .setContentSize(18)
-                    .setType(new boolean[]{true, true, true, false, false, false})
-                    .setLabel("年", "月", "日", "时", "分", "秒")
-                    .setLineSpacingMultiplier(1.2f)
-                    .setTextXOffset(0, 0, 0, 40, 0, -40)
-                    .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
-                    .setDividerColor(0xFF24AD9D)
-                    .build();
+                    @Override
+                    public void customLayout(View v) {
+                        final TextView tvConfirm = (TextView) v.findViewById(R.id.tv_confirm);
+                        TextView tvCancle = (TextView) v.findViewById(R.id.tv_cancle);
+                        tvConfirm.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                pvCustomTime.returnData();
+                                pvCustomTime.dismiss();
+                            }
+                        });
+                        tvCancle.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                pvCustomTime.dismiss();
+                            }
+                        });
+                    }
+                })
+                .setContentSize(18)
+                .setType(new boolean[]{true, true, true, false, false, false})
+                .setLabel("年", "月", "日", "时", "分", "秒")
+                .setLineSpacingMultiplier(1.2f)
+                .setTextXOffset(0, 0, 0, 40, 0, -40)
+                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .setDividerColor(0xFF24AD9D)
+                .build();
     }
 
     public void setVisibleAndGo(View view, boolean isVisiable) {
@@ -463,8 +485,82 @@ public class AddCompanyActivity extends BaseActivity implements SelectContentLis
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == SAOMIAOERWEIMA) {
+            //处理扫描结果（在界面上显示）
+            if (null != data) {
+                Bundle bundle = data.getExtras();
+                if (bundle == null) {
+                    return;
+                }
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    String result = bundle.getString(CodeUtils.RESULT_STRING);
+                    if (!StringUtils.isEmpty(result)) {
+                        String[] split = StringUtils.getReplaceBlank(result).split(";");
+                        String companyLicense = getCompanyLicense(split);
+                        String companyName = getCompanyName(split);
+                        String legalPerson = getLegalPerson(split);
+                        evCompanyLicense.setText(companyLicense);
+                        evCompanyName.setText(companyName);
+                        evLegalPerson.setText(legalPerson);
+                        llInputLicense.setVisibility(View.VISIBLE);
+
+                    }
+                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                    ToastUtil.show(this, "解析二维码失败");
+                }
+            }
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+    public String getCompanyLicense(String[] result) {
+        for (String item :
+                result) {
+            if (item.contains("统一社会信用代码")) {
+                return item.substring("统一社会信用代码:".length());
+            }
+        }
+
+        return "";
+    }
+
+    /**
+     * 获取公司名称
+     *
+     * @param result
+     * @return
+     */
+    public String getCompanyName(String[] result) {
+        for (String item :
+                result) {
+            LogUtil.d("数据" + item + "     " + "名称:".length() + "   " + item.length());
+            if (item.contains("名称")) {
+                return item.substring("名称:".length());
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 获取法人代表人
+     *
+     * @param result
+     * @return
+     */
+    public String getLegalPerson(String[] result) {
+        for (String item :
+                result) {
+            if (item.contains("法定代表人")) {
+                return item.substring("法定代表人:".length());
+            }
+        }
+        return "";
     }
 }

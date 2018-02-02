@@ -29,7 +29,7 @@
         android:layout_height="@dimen/navi_height"
         android:gravity="center"
         android:text=""
-        android:textColor="@color/base_color"
+        android:textColor="@color/white"
         android:textSize="@dimen/default_text_size" />
 
     <!-- 右边布局 -->

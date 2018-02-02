@@ -1,6 +1,7 @@
 package com.lgy.mvcdemo.ui.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -45,7 +46,7 @@ public class SearchCompanyActivity extends BaseActivity implements MultiItemType
 
     @Override
     public int getContentViewId() {
-        return R.layout.activity_notice_board;
+        return R.layout.activity_search_company;
     }
 
     @Override
@@ -98,7 +99,11 @@ public class SearchCompanyActivity extends BaseActivity implements MultiItemType
 
     @Override
     public void onItemClick(View view, RecyclerView.ViewHolder viewHolder, int i) {
-        startActivity(new Intent(this, CompanyDetailActivity.class));
+        Intent intent = new Intent(this, CompanyDetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(SearchCompanyResp.CompanyListBean.class.getName(), mDataList.get(i));
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     @Override

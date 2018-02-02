@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.lgy.mvcdemo.R;
 import com.lgy.mvcdemo.net.model.resp.LoginResp;
+import com.lgy.mvcdemo.utils.imageutils.ImageLoaderProxy;
 import com.lgy.mvcdemo.utils.sp.UserSpUtils;
 import com.lgy.mvcdemo.view.CircleImageView;
 import com.lgy.mvcdemo.view.NaviTitleView;
@@ -49,12 +50,20 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected void initView() {
+        super.initView();
+        naviView.visibleLeftRes(false);
+    }
+
+    @Override
     public void initData() {
         super.initData();
         LoginResp userBean = UserSpUtils.getUserBean();
         tvDayAddCompany.setText(userBean.getDayNum() + "");
         tvWeekAddCompany.setText(userBean.getWeekNum() + "");
         tvMonthAddCompany.setText(userBean.getMonthNum() + "");
+        ImageLoaderProxy.getInstace().displayImage("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517217538709&di=12ee2d56e468ebfc8c49be894883d27f&imgtype=0&src=http%3A%2F%2Fwww.pp3.cn%2Fuploads%2F201509%2F2015091008.jpg", ivHead);
+        tvName.setText(UserSpUtils.getUserName());
     }
 
 
@@ -74,11 +83,14 @@ public class MainActivity extends BaseActivity {
                 startActivity(new Intent(this, SearchCompanyActivity.class));
                 break;
             case R.id.tv_build_infor:
-                startActivity(new Intent(this, SearchBuildActivity.class));
+                Intent intent = new Intent(this, SearchBuildActivity.class);
+                intent.putExtra("code", SearchBuildActivity.LOOK_DETAIL_CODE);
+                startActivity(intent);
                 break;
             case R.id.tv_set:
                 startActivity(new Intent(this, SetActivity.class));
                 break;
         }
     }
+
 }

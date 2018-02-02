@@ -3,6 +3,11 @@
     package="com.lgy.mvcdemo">
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -28,6 +33,7 @@
         <activity android:name=".ui.activity.SearchCompanyActivity"></activity>
         <activity android:name=".ui.activity.SetActivity"></activity>
         <activity android:name=".ui.activity.SearchBuildActivity"></activity>
+        <activity android:name=".ui.activity.BuildDetailActivity"></activity>
 
 
         <meta-data

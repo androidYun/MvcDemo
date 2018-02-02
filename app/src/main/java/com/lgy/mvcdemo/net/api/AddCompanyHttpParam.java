@@ -46,8 +46,6 @@ public class AddCompanyHttpParam extends BaseHttpParam {
 
     public String headPerson;//负责人
 
-
-
     public String legalPhone;//负责人电话  法人电话
 
     public String taxAgency;//纳税机构

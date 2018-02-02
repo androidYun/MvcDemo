@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.lgy.mvcdemo.view.NaviTitleView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:center_title="楼宇详情"></com.lgy.mvcdemo.view.NaviTitleView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <com.lgy.mvcdemo.view.AddCompanyHeadView
+                android:id="@+id/view_base_infor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:head_left_res="@drawable/select_base_infor"
+                app:head_title="基本信息"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+
+            <LinearLayout
+                android:id="@+id/ll_base_infor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="地上车位数" />
+
+                    <TextView
+                        android:id="@+id/tv_aboveparkingnum"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="总楼层数" />
+
+                    <TextView
+                        android:id="@+id/tv_allFloor"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="自动扶梯" />
+
+                    <TextView
+                        android:id="@+id/tv_autoliftNum"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="单层面积" />
+
+                    <TextView
+                        android:id="@+id/tv_floorArea"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="货梯数量" />
+
+                    <TextView
+                        android:id="@+id/tv_goodliftNum"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="建筑面积" />
+
+                    <TextView
+                        android:id="@+id/tv_buildArea"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="楼宇性质" />
+
+                    <TextView
+                        android:id="@+id/tv_buildType"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="客梯数量" />
+
+                    <TextView
+                        android:id="@+id/tv_personliftNum"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="商务面积" />
+
+                    <TextView
+                        android:id="@+id/tv_merchantArea"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="商业面积" />
+
+                    <TextView
+                        android:id="@+id/tv_businessArea"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="所属单位" />
+
+                    <TextView
+                        android:id="@+id/tv_buildUnit"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="地下停车场面积" />
+
+                    <TextView
+                        android:id="@+id/tv_underparkingArea"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text=" 地下车位数" />
+
+                    <TextView
+                        android:id="@+id/tv_underparkingNum"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="投入使用时间" />
+
+                    <TextView
+                        android:id="@+id/tv_usetime"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="占地面积" />
+
+                    <TextView
+                        android:id="@+id/tv_coverArea"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.lgy.mvcdemo.view.AddCompanyHeadView
+                android:id="@+id/view_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:head_left_res="@drawable/select_base_infor"
+                app:head_title="位置信息"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+
+            <LinearLayout
+                android:id="@+id/ll_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="地址" />
+
+                    <TextView
+                        android:id="@+id/tv_address"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="楼宇名称" />
+
+                    <TextView
+                        android:id="@+id/tv_buildName"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="街道" />
+
+                    <TextView
+                        android:id="@+id/tv_sliceName"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="纬度" />
+
+                    <TextView
+                        android:id="@+id/tv_lat"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="经度" />
+
+                    <TextView
+                        android:id="@+id/tv_lng"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="社区" />
+
+                    <TextView
+                        android:id="@+id/tv_community"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.lgy.mvcdemo.view.AddCompanyHeadView
+                android:id="@+id/view_property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:head_left_res="@drawable/select_base_infor"
+                app:head_title="位置信息"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+
+            <LinearLayout
+                android:id="@+id/ll_property"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="费用/月" />
+
+                    <TextView
+                        android:id="@+id/tv_propertyMoney"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="联系人[物业]" />
+
+                    <TextView
+                        android:id="@+id/tv_propertyPerson"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="联系方式" />
+
+                    <TextView
+                        android:id="@+id/tv_propertyPhone"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="物业单位" />
+
+                    <TextView
+                        android:id="@+id/tv_propertyUnit"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.lgy.mvcdemo.view.AddCompanyHeadView
+                android:id="@+id/view_server"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:head_left_res="@drawable/select_base_infor"
+                app:head_title="服务水平"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+
+            <LinearLayout
+                android:id="@+id/ll_server"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="内部环境设施" />
+
+                    <TextView
+                        android:id="@+id/tv_propertyFacilities"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="卫生整洁度" />
+
+                    <TextView
+                        android:id="@+id/tv_propertyHealth"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="楼宇整体外观" />
+
+                    <TextView
+                        android:id="@+id/tv_propertyNice"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="安保服务" />
+
+                    <TextView
+                        android:id="@+id/tv_propertySecurity"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--配套环境-->
+            <com.lgy.mvcdemo.view.AddCompanyHeadView
+                android:id="@+id/view_suit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:head_left_res="@drawable/select_base_infor"
+                app:head_title="配套环境"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+
+            <LinearLayout
+                android:id="@+id/ll_suit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="文化设施" />
+
+                    <TextView
+                        android:id="@+id/tv_frameCulture"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="教育设施" />
+
+                    <TextView
+                        android:id="@+id/tv_frameEducation"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="金融服务" />
+
+                    <TextView
+                        android:id="@+id/tv_frameFinancial"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="餐饮设施" />
+
+                    <TextView
+                        android:id="@+id/tv_frameFood"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="交通和停车场" />
+
+                    <TextView
+                        android:id="@+id/tv_frameTraffic"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--办公环境-->
+            <com.lgy.mvcdemo.view.AddCompanyHeadView
+                android:id="@+id/view_work"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:head_left_res="@drawable/select_base_infor"
+                app:head_title="配套环境"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+
+            <LinearLayout
+                android:id="@+id/ll_work"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="楼宇自动控制系统" />
+
+                    <TextView
+                        android:id="@+id/tv_BA"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="通讯自动化" />
+
+                    <TextView
+                        android:id="@+id/tv_CA"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="消防自动化" />
+
+                    <TextView
+                        android:id="@+id/tv_FA"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="办公自动化" />
+
+                    <TextView
+                        android:id="@+id/tv_OA"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/build_infor_ll">
+
+                    <TextView
+                        style="@style/build_infor_title"
+                        android:text="安保自动化系统" />
+
+                    <TextView
+                        android:id="@+id/tv_SA"
+                        style="@style/build_infor_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

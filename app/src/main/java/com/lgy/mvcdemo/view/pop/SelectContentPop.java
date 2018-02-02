@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.lgy.mvcdemo.R;
 import com.lgy.mvcdemo.bean.CompanyDataBean;
 import com.lgy.mvcdemo.listener.SelectContentListener;
+import com.lgy.mvcdemo.utils.LogUtil;
 import com.lgy.mvcdemo.view.WheelView;
 import com.lgy.mvcdemo.view.pop.base.BasePopupWindow;
 
@@ -70,6 +71,7 @@ public class SelectContentPop extends BasePopupWindow {
             @Override
             public void onSelected(int selectedIndex, String item) {
                 selectPosition = selectedIndex;
+                LogUtil.d("数据内容" + selectPosition);
             }
         });
 
@@ -102,9 +104,9 @@ public class SelectContentPop extends BasePopupWindow {
                 dismissWithOutAnima();
                 break;
             case R.id.tv_confirm:
-                if (mDataList.size() > selectPosition) {
+                if (mDataList.size() > selectPosition-1) {
                     dismissWithOutAnima();
-                    selectContentListener.onSelectSuccess(code, mDataList.get(selectPosition));
+                    selectContentListener.onSelectSuccess(code, mDataList.get(selectPosition-1));
                 }
                 break;
         }

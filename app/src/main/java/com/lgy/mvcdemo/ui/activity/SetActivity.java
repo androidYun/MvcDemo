@@ -38,7 +38,7 @@ public class SetActivity extends BaseActivity {
         tvName.setText(UserSpUtils.getUserName());
     }
 
-    @OnClick({R.id.rl_modify_pwd, R.id.rl_modify_head})
+    @OnClick({R.id.rl_modify_pwd, R.id.rl_modify_head, R.id.rl_back_login})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_modify_pwd:
@@ -46,8 +46,10 @@ public class SetActivity extends BaseActivity {
                 break;
             case R.id.rl_modify_head:
                 break;
+            case R.id.rl_back_login:
+                startActivity(new Intent(this, LoginActivity.class));
+                break;
         }
     }
-
 
 }

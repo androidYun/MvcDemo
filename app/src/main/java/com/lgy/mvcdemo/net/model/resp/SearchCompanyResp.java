@@ -1,12 +1,13 @@
 package com.lgy.mvcdemo.net.model.resp;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2018/1/26.
  */
 
-public class SearchCompanyResp {
+public class SearchCompanyResp  implements Serializable{
 
     /**
      * command : 5
@@ -52,7 +53,7 @@ public class SearchCompanyResp {
         this.CompanyList = CompanyList;
     }
 
-    public static class CompanyListBean {
+    public static class CompanyListBean  implements Serializable{
         /**
          * basicEntity : {"companyCredit":"","companyLicense":"410104000015907","companyName":"郑州智领科技有限公司","companyTax":"","companyType":"C","contactPerson":"胡斌","contactPhone":"18530920798","economicType":"民营企业","headPerson":"胡斌","industry":"M","legalPerson":"胡斌","legalPhone":"18530920798","listedType":"A","regAddress":"郑州市经三路农科路绿洲银郡","regMoney":"30000000.00"}
          * otherEntity : {"employNum":"否","emptyAccount":null,"inTime":"2018/1/25 6:11:56","monthRent":"8000.00","productType":"第三产业","roomMaster":"郑州智领科技有限公司","taxAgency":"A"}
@@ -87,7 +88,7 @@ public class SearchCompanyResp {
             this.placeEntity = placeEntity;
         }
 
-        public static class BasicEntityBean {
+        public static class BasicEntityBean  implements Serializable{
             /**
              * companyCredit :
              * companyLicense : 410104000015907
@@ -243,7 +244,7 @@ public class SearchCompanyResp {
             }
         }
 
-        public static class OtherEntityBean {
+        public static class OtherEntityBean  implements Serializable{
             /**
              * employNum : 否
              * emptyAccount : null
@@ -255,7 +256,7 @@ public class SearchCompanyResp {
              */
 
             private String employNum;
-            private Object emptyAccount;
+            private String emptyAccount;
             private String inTime;
             private String monthRent;
             private String productType;
@@ -270,11 +271,11 @@ public class SearchCompanyResp {
                 this.employNum = employNum;
             }
 
-            public Object getEmptyAccount() {
+            public String getEmptyAccount() {
                 return emptyAccount;
             }
 
-            public void setEmptyAccount(Object emptyAccount) {
+            public void setEmptyAccount(String emptyAccount) {
                 this.emptyAccount = emptyAccount;
             }
 
@@ -319,7 +320,7 @@ public class SearchCompanyResp {
             }
         }
 
-        public static class PlaceEntityBean {
+        public static class PlaceEntityBean  implements Serializable{
             /**
              * buildName : 清华园
              * buildNo : 13

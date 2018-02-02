@@ -24,6 +24,7 @@ public class SearchCompanyAdapter extends CommonAdapter<SearchCompanyResp.Compan
 
     @Override
     protected void convert(final ViewHolder viewHolder, SearchCompanyResp.CompanyListBean companyListBean, final int position) {
+        viewHolder.setText(R.id.tv_company_name, companyListBean.getBasicEntity().getCompanyName());
         viewHolder.setText(R.id.tv_build_no, companyListBean.getPlaceEntity().getBuildName());
         viewHolder.setText(R.id.tv_comunity, companyListBean.getPlaceEntity().getCommunity());
         viewHolder.setText(R.id.tv_industry, companyListBean.getBasicEntity().getIndustry());
@@ -32,7 +33,7 @@ public class SearchCompanyAdapter extends CommonAdapter<SearchCompanyResp.Compan
         viewHolder.setOnClickListener(R.id.ll_item, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mOnItemClickListener.onItemClick(view,viewHolder,position);
+                mOnItemClickListener.onItemClick(view, viewHolder, position);
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.lgy.mvcdemo.ui.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -10,7 +11,7 @@ import android.widget.TextView;
 
 import com.lgy.mvcdemo.R;
 import com.lgy.mvcdemo.event.SearchBuildEvent;
-import com.lgy.mvcdemo.net.api.SearchBuildHttpParam;
+import com.lgy.mvcdemo.net.api.CheckBuildHttpParam;
 import com.lgy.mvcdemo.net.model.resp.SearchBuildResp;
 import com.lgy.mvcdemo.ui.adapter.BuildAdapter;
 import com.lgy.mvcdemo.utils.FastJsonUtil;
@@ -32,7 +33,11 @@ import butterknife.BindView;
  * 修改内容：
  */
 
-public class SearchBuildActivity extends BaseActivity  implements MultiItemTypeAdapter.OnItemClickListener{
+public class SearchBuildActivity extends BaseActivity implements MultiItemTypeAdapter.OnItemClickListener {
+    public final static int SEARCH_CODE = 1000;//搜索楼宇
+
+    public final static int LOOK_DETAIL_CODE = 1001;//楼宇详情
+
     @BindView(R.id.navi_view)
     NaviTitleView naviView;
     @BindView(R.id.ev_search)
@@ -42,11 +47,13 @@ public class SearchBuildActivity extends BaseActivity  implements MultiItemTypeA
     @BindView(R.id.rv_search_build)
     RecyclerView rvSearchBuild;
 
-    private SearchBuildHttpParam searchBuildHttpParam;
+    private CheckBuildHttpParam checkBuildHttpParam;
 
     private BuildAdapter buildAdapter;
 
     private List<SearchBuildResp.BuildListBean> mDataList = new ArrayList<>();
+
+    private int code;
 
     @Override
     public int getContentViewId() {
@@ -56,7 +63,7 @@ public class SearchBuildActivity extends BaseActivity  implements MultiItemTypeA
     @Override
     protected void initView() {
         super.initView();
-        searchBuildHttpParam = new SearchBuildHttpParam();
+        checkBuildHttpParam = new CheckBuildHttpParam();
         evSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
@@ -65,9 +72,9 @@ public class SearchBuildActivity extends BaseActivity  implements MultiItemTypeA
                     SysUtils.hideSoftInput(SearchBuildActivity.this, evSearch);
                     return true;
                 }
-                searchBuildHttpParam.buildName = evSearch.getText().toString().trim();
-                searchBuildHttpParam.buildName = "清华园";
-                httpManger.doPostHttp(searchBuildHttpParam);
+                checkBuildHttpParam.buildName = evSearch.getText().toString().trim();
+                checkBuildHttpParam.buildName = "清华园";
+                httpManger.doPostHttp(checkBuildHttpParam);
                 return false;
             }
         });
@@ -78,6 +85,8 @@ public class SearchBuildActivity extends BaseActivity  implements MultiItemTypeA
     @Override
     public void initData() {
         super.initData();
+        Intent intent = getIntent();
+        code = intent.getIntExtra("code", SEARCH_CODE);
         buildAdapter = new BuildAdapter(this, R.layout.item_build_layout, mDataList);
         buildAdapter.setOnItemClickListener(this);
         rvSearchBuild.setAdapter(buildAdapter);
@@ -86,7 +95,7 @@ public class SearchBuildActivity extends BaseActivity  implements MultiItemTypeA
     @Override
     public void onSuccess(int command, String result) {
         super.onSuccess(command, result);
-        if (command == searchBuildHttpParam.getCommand()) {
+        if (command == checkBuildHttpParam.getCommand()) {
             SearchBuildResp searchBuildResp = FastJsonUtil.getObject(result, SearchBuildResp.class);
             if (searchBuildResp != null && searchBuildResp.getBuildList().size() > 0) {
                 mDataList.clear();
@@ -98,8 +107,14 @@ public class SearchBuildActivity extends BaseActivity  implements MultiItemTypeA
 
     @Override
     public void onItemClick(View view, RecyclerView.ViewHolder viewHolder, int i) {
-        EventBus.getDefault().post(new SearchBuildEvent(mDataList.get(i).getBuildId(),mDataList.get(i).getBuildName()));
-        finish();
+        if (code == SEARCH_CODE) {
+            EventBus.getDefault().post(new SearchBuildEvent(mDataList.get(i).getBuildId(), mDataList.get(i).getBuildName()));
+            finish();
+        } else {
+            Intent intent = new Intent(this, BuildDetailActivity.class);
+            intent.putExtra("buildname", mDataList.get(i).getBuildName());
+            startActivity(intent);
+        }
     }
 
     @Override

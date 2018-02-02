@@ -82,6 +82,7 @@
             android:layout_centerVertical="true"
             android:src="@mipmap/ic_next" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rl_modify_head"
         android:layout_width="match_parent"
@@ -115,6 +116,7 @@
             android:layout_centerVertical="true"
             android:src="@mipmap/ic_next" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rl_back_login"
         android:layout_width="match_parent"
@@ -138,7 +140,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/iv_back_login"
-            android:text="修改登录密码"
+            android:text="退出登录"
             android:textColor="@color/base_color" />
 
         <ImageView

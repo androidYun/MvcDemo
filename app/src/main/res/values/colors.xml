@@ -17,6 +17,7 @@
     <color name="week_month_add_compamy_num">#4687FF</color>
     <color name="select_color">#FE7438</color>
     <color name="circle_color">#FE533B</color>
+    <color name="policy_rule_color">#2CD286</color>
     <color name="build_head_color">#F9F9F9</color>
     <!--半透明顏色值-->
     <color name="translucent">#4D000000</color>

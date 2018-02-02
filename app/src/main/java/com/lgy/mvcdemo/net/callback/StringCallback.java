@@ -52,7 +52,7 @@ public abstract class StringCallback extends com.lzy.okgo.callback.StringCallbac
 
     @Override
     public void onStart(Request<String, ? extends Request> request) {
-        if (isNeedProgress && dialog != null && !dialog.isShowing()) {
+        if (isNeedProgress && dialog != null && !dialog.isShowing() && !mActivity.isFinishing()) {
             dialog.show();
         }
     }
