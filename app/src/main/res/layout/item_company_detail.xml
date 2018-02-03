@@ -78,6 +78,7 @@
             tools:text="0371-2598648" />
 
         <TextView
+            android:id="@+id/tv_company_license"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

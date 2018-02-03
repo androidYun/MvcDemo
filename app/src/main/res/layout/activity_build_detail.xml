@@ -13,6 +13,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:scrollbars="none">
 
         <LinearLayout
@@ -33,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <LinearLayout style="@style/build_infor_ll">
 
@@ -205,7 +206,7 @@
                 android:id="@+id/view_place"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:head_left_res="@drawable/select_base_infor"
+                app:head_left_res="@drawable/select_location"
                 app:head_title="位置信息"></com.lgy.mvcdemo.view.AddCompanyHeadView>
 
             <LinearLayout
@@ -213,7 +214,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <LinearLayout style="@style/build_infor_ll">
 
@@ -286,15 +287,15 @@
                 android:id="@+id/view_property"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:head_left_res="@drawable/select_base_infor"
-                app:head_title="位置信息"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+                app:head_left_res="@drawable/select_property"
+                app:head_title="物业信息"></com.lgy.mvcdemo.view.AddCompanyHeadView>
 
             <LinearLayout
                 android:id="@+id/ll_property"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <LinearLayout style="@style/build_infor_ll">
 
@@ -345,7 +346,7 @@
                 android:id="@+id/view_server"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:head_left_res="@drawable/select_base_infor"
+                app:head_left_res="@drawable/select_server"
                 app:head_title="服务水平"></com.lgy.mvcdemo.view.AddCompanyHeadView>
 
             <LinearLayout
@@ -353,7 +354,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <LinearLayout style="@style/build_infor_ll">
 
@@ -404,7 +405,7 @@
                 android:id="@+id/view_suit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:head_left_res="@drawable/select_base_infor"
+                app:head_left_res="@drawable/select_suit"
                 app:head_title="配套环境"></com.lgy.mvcdemo.view.AddCompanyHeadView>
 
             <LinearLayout
@@ -412,7 +413,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <LinearLayout style="@style/build_infor_ll">
 
@@ -475,15 +476,15 @@
                 android:id="@+id/view_work"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:head_left_res="@drawable/select_base_infor"
-                app:head_title="配套环境"></com.lgy.mvcdemo.view.AddCompanyHeadView>
+                app:head_left_res="@drawable/select_work"
+                app:head_title="办公环境"></com.lgy.mvcdemo.view.AddCompanyHeadView>
 
             <LinearLayout
                 android:id="@+id/ll_work"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <LinearLayout style="@style/build_infor_ll">
 

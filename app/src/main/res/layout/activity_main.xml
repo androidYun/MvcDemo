@@ -23,7 +23,8 @@
         <com.lgy.mvcdemo.view.CircleImageView
             android:id="@+id/iv_head"
             android:layout_width="83dp"
-            android:layout_height="83dp" />
+            android:layout_height="83dp"
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -109,7 +110,7 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:textColor="@color/today_add_compamy_num"
-                    android:textSize="11dp"
+                    android:textSize="19dp"
                     tools:text="15" />
 
                 <TextView
@@ -119,7 +120,7 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:textColor="@color/week_month_add_compamy_num"
-                    android:textSize="11dp"
+                    android:textSize="19dp"
                     tools:text="105" />
 
                 <TextView
@@ -129,7 +130,7 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:textColor="@color/week_month_add_compamy_num"
-                    android:textSize="11dp"
+                    android:textSize="19dp"
                     tools:text="320" />
             </LinearLayout>
         </LinearLayout>
@@ -138,7 +139,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="6"
         android:orientation="vertical">
 
         <LinearLayout
@@ -184,7 +185,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/white"
-            android:gravity="center_vertical">
+            android:gravity="top">
 
             <TextView
                 android:id="@+id/tv_search_company"

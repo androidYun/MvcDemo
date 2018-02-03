@@ -227,6 +227,7 @@ public class BuildDetailActivity extends BaseActivity {
         BuildDetailResp.BuildListBean.ServerEntityBean serverEntity = buildListBean.serverEntity;
         BuildDetailResp.BuildListBean.SuitEntityBean suitEntity = buildListBean.suitEntity;
         BuildDetailResp.BuildListBean.WorkEntityBean workEntity = buildListBean.workEntity;
+        /*基本信息*/
         tvAboveparkingnum.setText(basicEntity.aboveparkingNum + "");
         tvAllFloor.setText(basicEntity.allFloor + "");
         tvAutoliftNum.setText(basicEntity.autoliftNum + "");

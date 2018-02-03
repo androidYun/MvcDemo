@@ -20,7 +20,7 @@ public class SpanUtils {
      */
     public static SpannableString getNoticeSpan(String str) {
         SpannableString spanStr = new SpannableString(str);
-        spanStr.setSpan(new AbsoluteSizeSpan(11, true), 1, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spanStr.setSpan(new AbsoluteSizeSpan(10, true), 1, 2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spanStr;
     }
 }

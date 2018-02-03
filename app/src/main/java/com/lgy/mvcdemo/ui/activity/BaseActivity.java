@@ -1,8 +1,10 @@
 package com.lgy.mvcdemo.ui.activity;
 
 import android.Manifest;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.lgy.mvcdemo.listener.HttpListener;
 import com.lgy.mvcdemo.net.utils.HttpManger;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import me.bakumon.statuslayoutmanager.library.OnStatusChildClickListener;
+import me.bakumon.statuslayoutmanager.library.StatusLayoutManager;
 
 /**
  * Created by Administrator on 2018/1/19.
@@ -64,6 +68,41 @@ public abstract class BaseActivity extends AutoLayoutActivity implements HttpLis
 
     public abstract int getContentViewId();
 
+    public StatusLayoutManager getStatusLayoutManager(View view, int emptyId) {
+        StatusLayoutManager statusLayoutManager = new StatusLayoutManager.Builder(view).setOnStatusChildClickListener(new OnStatusChildClickListener() {
+            @Override
+            public void onEmptyChildClick(View view) {
+                emptyViewClick();
+            }
+
+            @Override
+            public void onErrorChildClick(View view) {
+
+            }
+
+            @Override
+            public void onCustomerChildClick(View view) {
+
+            }
+        })
+                // 设置默认加载中布局的提示文本
+                .setDefaultLoadingText("正在加载...")
+
+                // 设置默认空数据布局的提示文本
+                .setDefaultEmptyText("暂时没有数据")
+                // 设置默认空数据布局的图片
+                .setDefaultEmptyImg(emptyId)
+                // 设置默认出错布局的提示文本
+                .setDefaultErrorText("加载数据失败")
+                // 设置默认出错布局的图片
+                .setDefaultErrorImg(emptyId)
+                // 设置默认出错布局重试按钮的文本
+                // 设置布局背景，包括加载中、空数据和出错布局
+                .setDefaultLayoutsBackgroundColor(Color.WHITE)
+                .build();
+        return statusLayoutManager;
+    }
+
     protected void initView() {
 
     }
@@ -99,6 +138,10 @@ public abstract class BaseActivity extends AutoLayoutActivity implements HttpLis
     }
 
     protected void onPermissionFail(int code) {
+
+    }
+
+    protected void emptyViewClick() {
 
     }
 }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import me.bakumon.statuslayoutmanager.library.StatusLayoutManager;
 
 /**
  * Created by Administrator on 2018/1/24.
@@ -24,6 +25,8 @@ public class NoticeBoardActivity extends BaseActivity {
     NaviTitleView naviView;
     @BindView(R.id.rv_notice)
     PullLoadMoreRecyclerView rvNotice;
+
+    StatusLayoutManager statusLayoutManager;
 
     MessageHttpParam messageHttpParam;
 
@@ -39,6 +42,7 @@ public class NoticeBoardActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
+        statusLayoutManager = getStatusLayoutManager(rvNotice, R.mipmap.ic_notice_empty);
         rvNotice.setLinearLayout();
         rvNotice.setPullRefreshEnable(false);
         rvNotice.setPushRefreshEnable(false);
@@ -60,6 +64,7 @@ public class NoticeBoardActivity extends BaseActivity {
 
     }
 
+
     @Override
     public void onSuccess(int command, String result) {
         super.onSuccess(command, result);
@@ -69,6 +74,9 @@ public class NoticeBoardActivity extends BaseActivity {
                 mDataList.clear();
                 mDataList.addAll(noticeBoardResp.getNoticeList());
                 noticeBoardAdapter.notifyDataSetChanged();
+                statusLayoutManager.showSuccessLayout();
+            } else {
+                statusLayoutManager.showEmptyLayout();
             }
         }
         rvNotice.setPullLoadMoreCompleted();
@@ -78,5 +86,12 @@ public class NoticeBoardActivity extends BaseActivity {
     public void onFail(int command, String errorMsg) {
         super.onFail(command, errorMsg);
         rvNotice.setPullLoadMoreCompleted();
+        statusLayoutManager.showErrorLayout();
+    }
+
+    @Override
+    protected void emptyViewClick() {
+        super.emptyViewClick();
+        httpManger.doPostHttp(messageHttpParam);
     }
 }

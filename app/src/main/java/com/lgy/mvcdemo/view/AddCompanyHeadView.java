@@ -77,9 +77,11 @@ public class AddCompanyHeadView extends RelativeLayout {
         if (ivExpand.isSelected()) {
             ivExpand.setSelected(false);
             ivModifyHead.setSelected(false);
+            tvTitle.setSelected(false);
         } else {
             ivExpand.setSelected(true);
             ivModifyHead.setSelected(true);
+            tvTitle.setSelected(true);
         }
     }
 

@@ -30,6 +30,7 @@ public class SearchCompanyAdapter extends CommonAdapter<SearchCompanyResp.Compan
         viewHolder.setText(R.id.tv_industry, companyListBean.getBasicEntity().getIndustry());
         viewHolder.setText(R.id.tv_contactPhone, companyListBean.getBasicEntity().getContactPhone());
         viewHolder.setText(R.id.tv_build_no, companyListBean.getPlaceEntity().getBuildName());
+        viewHolder.setText(R.id.tv_company_license, companyListBean.getBasicEntity().getCompanyLicense());
         viewHolder.setOnClickListener(R.id.ll_item, new View.OnClickListener() {
             @Override
             public void onClick(View view) {

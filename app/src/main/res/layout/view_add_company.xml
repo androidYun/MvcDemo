@@ -24,7 +24,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/iv_modify_head"
-        android:textColor="@color/base_color"
+        android:textColor="@drawable/select_company_item"
         tools:text="基本信息" />
 
     <ImageView
