@@ -43,7 +43,39 @@ public class HttpManger {
                     httpListener.onFail(baseHttpParam.getCommand(), "请求数据失败");
                 } else {
                     BaseResp baseResp = FastJsonUtil.getObject(result, BaseResp.class);
-                    if (baseResp.getResult() == 1||baseResp.getResult()==0) {//成功
+                    if (baseResp.getResult() == 1 || baseResp.getResult() == 0) {//成功
+                        httpListener.onSuccess(baseResp.getCommand(), result);
+                    } else {
+                        httpListener.onFail(baseResp.getCommand(), baseResp.getErrorMsg());
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Response<String> response) {
+                super.onError(response);
+                int code = response.code();
+                httpListener.onFail(baseHttpParam.getCommand(), "请求失败");
+            }
+        });
+
+    }
+
+    public void upLoadFileHttp(final BaseHttpParam baseHttpParam) {
+        if (!baseHttpParam.isParamLegal().isLegal()) {
+            httpListener.onFail(0, baseHttpParam.isParamLegal().getErrorMsg());
+            return;
+        }
+        JSONObject jsonObject = new JSONObject(baseHttpParam.getParamMap());
+        OkGo.<String>post(API_SERVER_URL).upJson(jsonObject).tag(baseHttpParam.getTag()).execute(new StringCallback(mActivity, baseHttpParam.isNeedProgress()) {
+            @Override
+            public void onSuccess(Response<String> response) {
+                String result = response.body();
+                if (StringUtils.isEmpty(result)) {
+                    httpListener.onFail(baseHttpParam.getCommand(), "请求数据失败");
+                } else {
+                    BaseResp baseResp = FastJsonUtil.getObject(result, BaseResp.class);
+                    if (baseResp.getResult() == 1 || baseResp.getResult() == 0) {//成功
                         httpListener.onSuccess(baseResp.getCommand(), result);
                     } else {
                         httpListener.onFail(baseResp.getCommand(), baseResp.getErrorMsg());
@@ -86,4 +118,9 @@ public class HttpManger {
             }
         });
     }
+
+    public void downLoadApp() {
+
+    }
+
 }

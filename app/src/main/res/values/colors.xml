@@ -21,4 +21,5 @@
     <color name="build_head_color">#F9F9F9</color>
     <!--半透明顏色值-->
     <color name="translucent">#4D000000</color>
+    <color name="album_color">#333333</color>
 </resources>

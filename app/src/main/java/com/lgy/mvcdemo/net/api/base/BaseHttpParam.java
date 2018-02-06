@@ -84,4 +84,12 @@ public abstract class BaseHttpParam {
     public abstract LegalParam isParamLegal();//是否参数合法
 
     public abstract HashMap<String, String> getParamMap();//是否参数合法
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

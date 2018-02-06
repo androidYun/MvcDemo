@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity {
         tvDayAddCompany.setText(userBean.getDayNum() + "");
         tvWeekAddCompany.setText(userBean.getWeekNum() + "");
         tvMonthAddCompany.setText(userBean.getMonthNum() + "");
-        ImageLoaderProxy.getInstace().displayImage("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517217538709&di=12ee2d56e468ebfc8c49be894883d27f&imgtype=0&src=http%3A%2F%2Fwww.pp3.cn%2Fuploads%2F201509%2F2015091008.jpg", ivHead);
+        ImageLoaderProxy.getInstace().displayImage("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517217538709&di=12ee2d56e468ebfc8c49be894883d27f&imgtype=0&src=http%3A%2F%2Fwww.pp3.cn%2Fuploads%2F201509%2F2015091008.jpg", ivHead, R.mipmap.default_user);
         tvName.setText(UserSpUtils.getUserName());
     }
 

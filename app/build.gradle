@@ -51,5 +51,6 @@ dependencies {
     compile 'com.wuxiaolong.pullloadmorerecyclerview:library:1.1.2'
     compile 'cn.yipianfengye.android:zxing-library:2.2'
     compile 'com.yanzhenjie:permission:1.0.6'
+    compile 'com.yanzhenjie:album:2.0.2'
     implementation project(':library')
 }
