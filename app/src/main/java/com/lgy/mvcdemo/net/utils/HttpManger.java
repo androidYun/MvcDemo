@@ -22,7 +22,7 @@ public class HttpManger {
     private HttpListener httpListener;
 
     private Activity mActivity;
-    String API_SERVER_URL = "http://w.kjjl100.com/handle/getdata.ashx";
+    String API_SERVER_URL = "http://lou.hnwoka.com/handle/getdata.ashx";
 
     public HttpManger(HttpListener httpListener, Activity mActivity) {
         this.httpListener = httpListener;

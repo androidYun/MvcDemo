@@ -9,7 +9,9 @@ import com.lgy.mvcdemo.listener.AlbumImageListener;
 import com.lgy.mvcdemo.net.api.ModifyHeadHttpParam;
 import com.lgy.mvcdemo.net.api.UpFileHttpParam;
 import com.lgy.mvcdemo.net.model.resp.LoginResp;
+import com.lgy.mvcdemo.net.model.resp.UpImgResp;
 import com.lgy.mvcdemo.utils.AlbumUtils;
+import com.lgy.mvcdemo.utils.FastJsonUtil;
 import com.lgy.mvcdemo.utils.FileUtils;
 import com.lgy.mvcdemo.utils.ToastUtil;
 import com.lgy.mvcdemo.utils.imageutils.ImageLoaderProxy;
@@ -72,7 +74,7 @@ public class SetActivity extends BaseActivity {
                         if (result != null && result.size() > 0) {
                             File file = new File(result.get(0));
                             String base64 = FileUtils.fileToBase64(file);
-                            upFileHttpParam.imgFile=base64;
+                            upFileHttpParam.imgFile = base64;
                             httpManger.upLoadFileHttp(upFileHttpParam);
                         }
                     }
@@ -90,14 +92,18 @@ public class SetActivity extends BaseActivity {
         }
     }
 
+    String headPath;
+
     @Override
     public void onSuccess(int command, String result) {
         super.onSuccess(command, result);
         if (command == upFileHttpParam.getCommand()) {
-            modifyHeadHttpParam.imgPath = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517217538709&di=12ee2d56e468ebfc8c49be894883d27f&imgtype=0&src=http%3A%2F%2Fwww.pp3.cn%2Fuploads%2F201509%2F2015091008.jpg";
+            UpImgResp upImgResp = FastJsonUtil.getObject(result, UpImgResp.class);
+            headPath = upImgResp.imgPath;
+            modifyHeadHttpParam.imgPath = upImgResp.imgPath;
             httpManger.doPostHttp(modifyHeadHttpParam);
         } else if (command == modifyHeadHttpParam.getCommand()) {
-            ImageLoaderProxy.getInstace().displayImage("", ivHead);
+            ImageLoaderProxy.getInstace().displayImage(headPath, ivHead);
         }
     }
 }

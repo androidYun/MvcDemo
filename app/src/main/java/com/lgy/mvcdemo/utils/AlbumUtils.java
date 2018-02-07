@@ -56,6 +56,7 @@ public class AlbumUtils {
                 .onResult(new Action<ArrayList<AlbumFile>>() {
                     @Override
                     public void onAction(int requestCode, @NonNull ArrayList<AlbumFile> result) {
+
                         ArrayList<String> parseResult = new ArrayList<>();
                         for (AlbumFile albumFile : result) {
                             parseResult.add(albumFile.getPath());
